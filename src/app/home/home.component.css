@@ -1,0 +1,31 @@
+.card-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.card {
+  align-content: center;
+  display: inline-block;
+  margin: 20px;
+  width: 400px;
+  text-align: center;
+}
+
+.card > .mat-card-header {
+  align-items: center;
+  justify-content: center;
+}
+
+.mat-card-actions, .mat-card-subtitle, .mat-card-content {
+  margin: 8px 0;
+}
+
+.mat-card-title {
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.mat-card-title > .mat-icon {
+  margin-right: 5px;
+}
