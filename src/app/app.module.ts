@@ -12,14 +12,14 @@ import { HomeComponent } from './home/home.component';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { LoginComponent } from './login/login.component';
 import { MaterialModule } from './material-module';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { NavbarComponent } from './navbar/navbar.component';
 import { RoutingModule } from './routing-module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    NavBarComponent,
+    NavbarComponent,
     LoginComponent,
   ],
   imports: [

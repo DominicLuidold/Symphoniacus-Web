@@ -5,10 +5,10 @@ import { User } from '../_models/user';
 
 @Component({
   selector: 'app-nav-bar',
-  templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.css']
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css']
 })
-export class NavBarComponent implements OnInit {
+export class NavbarComponent implements OnInit {
   user: User;
 
   constructor(private authenticationService: AuthenticationService) {
