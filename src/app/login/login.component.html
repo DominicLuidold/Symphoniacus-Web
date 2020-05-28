@@ -1,0 +1,26 @@
+<div class="card-container">
+  <mat-card class="card mat-elevation-z4">
+    <h2>Login</h2>
+    <form (submit)="onSubmit()" class="form">
+        <mat-form-field class="full-width">
+          <mat-label>Username</mat-label>
+          <input matInput [formControl]="usernameFormControl" placeholder="Username">
+          <mat-error *ngIf="usernameFormControl.hasError('required')">
+            Username is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" [formControl]="passwordFormControl" placeholder="Password">
+          <mat-error *ngIf="passwordFormControl.hasError('required')">
+            Password is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      <p>
+        <button [disabled]="loading || !(usernameFormControl.valid && passwordFormControl.valid)" mat-raised-button color="primary" class="full-width">
+          Login
+        </button>
+      </p>
+    </form>
+  </mat-card>
+</div>
