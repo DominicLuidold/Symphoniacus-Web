@@ -31,8 +31,7 @@ steps:
     password: '***REMOVED***'
     rootDirectory: '$(System.DefaultWorkingDirectory)/dist/Symphoniacus-Web/'
     filePatterns: '**'
-    remoteDirectory: '/'
-    clean: false
-    cleanContents: true
+    remoteDirectory: '/deployment/'
+    clean: true
     preservePaths: true
     trustSSL: false
