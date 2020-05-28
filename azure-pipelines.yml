@@ -20,3 +20,19 @@ steps:
     npm install
     ng build --prod
   displayName: 'npm install and build'
+
+- task: FtpUpload@2
+  displayName: 'Upload to Webspace'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
+  inputs:
+    credentialsOption: 'inputs'
+    serverUrl: 'vweb17.nitrado.net'
+    username: '***REMOVED***'
+    password: '***REMOVED***'
+    rootDirectory: '$(System.DefaultWorkingDirectory)'
+    filePatterns: '**'
+    remoteDirectory: '/symphoniacus/'
+    clean: false
+    cleanContents: true
+    preservePaths: true
+    trustSSL: false
