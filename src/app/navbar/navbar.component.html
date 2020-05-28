@@ -3,7 +3,7 @@
 
   <span class="fill-remaining-space"></span>
 
-  <button mat-flat-button>
+  <button mat-flat-button *ngIf="user" (click)="logout()">
     <mat-icon>person</mat-icon>
     Logout
   </button>
