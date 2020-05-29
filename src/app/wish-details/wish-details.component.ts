@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Input } from '@angular/core';
 
+import { Duty } from '../_models/duty';
 import { wishes } from '../wishes';
 
 @Component({
@@ -10,13 +11,12 @@ import { wishes } from '../wishes';
 })
 export class WishDetailsComponent implements OnInit {
   displayedColumns: string[] = ['type', 'date', 'details', 'edit'];
-  @Input() duty;
+  @Input() duty: Duty;
   wish;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.wish = new Array(wishes.find(o => o.dutyId === this.duty[0].dutyId));
-    console.log(this.wish);
+    this.wish = new Array(wishes.find(o => o.dutyId === this.duty.dutyId));
   }
 }

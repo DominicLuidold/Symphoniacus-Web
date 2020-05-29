@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 
-import { duties } from '../duties';
+import { Duty } from '../_models/duty';
+import { DutyService } from '../_services/duty.service';
 
 @Component({
   selector: 'app-duty-details',
@@ -10,15 +12,19 @@ import { duties } from '../duties';
 })
 export class DutyDetailsComponent implements OnInit {
   displayedColumns: string[] = ['start', 'end', 'category', 'description', 'seriesOfPerformances', 'musicalPieces'];
-  duty;
+  duty: Duty;
+  tableData: Duty[];
 
   constructor(
     private route: ActivatedRoute,
+    private dutyService: DutyService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      this.duty = new Array(duties[+params.get('dutyId') - 1]); // TODO - Add real data source here
+      this.duty = this.dutyService.getById(+params.get('dutyId')); // TODO Pipe etc!
+      this.tableData = new Array(this.duty);
     });
   }
 }
