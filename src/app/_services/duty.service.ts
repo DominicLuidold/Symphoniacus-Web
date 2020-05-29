@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Duty } from '@app/_models/duty';
+import { Response } from '@app/_models/response';
+import { environment } from '@environments/environment';
 import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment';
-import { Duty } from '../_models/duty';
-import { Response } from '../_models/response';
 
 @Injectable({ providedIn: 'root' })
 export class DutyService {

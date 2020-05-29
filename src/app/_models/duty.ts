@@ -1,5 +1,5 @@
-import { DutyCategory } from './dutyCategory';
-import { SeriesOfPerformances } from './seriesOfPerformances';
+import { DutyCategory } from '@app/_models/dutyCategory';
+import { SeriesOfPerformances } from '@app/_models/seriesOfPerformances';
 
 export interface Duty {
   dutyId: number;

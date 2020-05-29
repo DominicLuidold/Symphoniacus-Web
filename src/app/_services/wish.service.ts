@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Response } from '@app/_models/response';
+import { DateWish, DutyWish } from '@app/_models/wish';
+import { dutyWishes } from '@app/wishes';
+import { environment } from '@environments/environment';
 import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment';
-import { Response } from '../_models/response';
-import { DateWish, DutyWish } from '../_models/wish';
-import { dutyWishes } from '../wishes';
 
 @Injectable({ providedIn: 'root' })
 export class WishService {

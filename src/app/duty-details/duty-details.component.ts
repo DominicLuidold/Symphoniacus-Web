@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { Duty } from '@app/_models/duty';
+import { DutyService } from '@app/_services/duty.service';
+import { DutyWishDialogComponent } from '@app/duty-wish-dialog/duty-wish-dialog.component';
 import { first } from 'rxjs/operators';
-import { Duty } from '../_models/duty';
-import { DutyService } from '../_services/duty.service';
-import { DutyWishDialogComponent } from '../duty-wish-dialog/duty-wish-dialog.component';
 
 @Component({
   selector: 'app-duty-details',

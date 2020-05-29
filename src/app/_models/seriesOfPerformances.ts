@@ -1,4 +1,4 @@
-import { MusicalPiece } from './musicalPiece';
+import { MusicalPiece } from '@app/_models/musicalPiece';
 
 export interface SeriesOfPerformances {
   seriesOfPerformancesId: number;

@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MusicalPiece } from '../_models/musicalPiece';
-import { WishType } from '../_models/wish';
+import { MusicalPiece } from '@app/_models/musicalPiece';
+import { WishType } from '@app/_models/wish';
 
 @Component({
   selector: 'app-duty-wish-dialog',
