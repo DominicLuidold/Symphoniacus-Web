@@ -1,4 +1,4 @@
-import { Duty } from './_models/duty';
+import { Duty } from '@app/_models';
 
 export const duties: Duty[] = [
   {

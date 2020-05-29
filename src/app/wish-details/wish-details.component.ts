@@ -1,8 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { BaseWish, Duty } from '@app/_models';
+import { WishService } from '@app/_services';
 import { first } from 'rxjs/operators';
-import { Duty } from '@app/_models/duty';
-import { BaseWish } from '@app/_models/wish';
-import { WishService } from '@app/_services/wish.service';
 
 @Component({
   selector: 'app-wish-details',

@@ -1,4 +1,4 @@
-import { DutyWish } from './_models/wish';
+import { DutyWish } from '@app/_models';
 
 export const dutyWishes: DutyWish[] = [
   {

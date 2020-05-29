@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { Duty } from '@app/_models/duty';
-import { DutyService } from '@app/_services/duty.service';
+import { Duty } from '@app/_models';
+import { DutyService } from '@app/_services';
 import { DutyWishDialogComponent } from '@app/duty-wish-dialog/duty-wish-dialog.component';
 import { first } from 'rxjs/operators';
 

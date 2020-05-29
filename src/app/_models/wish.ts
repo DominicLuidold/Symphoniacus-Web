@@ -1,4 +1,4 @@
-import { MusicalPiece } from '@app/_models/musicalPiece';
+import { MusicalPiece } from '@app/_models';
 
 export interface BaseWish {
   wishType: 'POSITIVE' | 'NEGATIVE';

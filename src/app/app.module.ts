@@ -3,18 +3,17 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ErrorInterceptor } from './_helpers/error.interceptor';
-import { JwtInterceptor } from './_helpers/jwt.interceptor';
-import { MusicalPieceDividerPipe } from './_pipes/musical-piece-divider.pipe';
-import { AppComponent } from './app.component';
-import { DutyDetailsComponent } from './duty-details/duty-details.component';
-import { DutyWishDialogComponent } from './duty-wish-dialog/duty-wish-dialog.component';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { MaterialModule } from './material-module';
-import { NavbarComponent } from './navbar/navbar.component';
-import { RoutingModule } from './routing-module';
-import { WishDetailsComponent } from './wish-details/wish-details.component';
+import { ErrorInterceptor, JwtInterceptor } from '@app/_helpers';
+import { MusicalPieceDividerPipe } from '@app/_pipes';
+import { AppComponent } from '@app/app.component';
+import { DutyDetailsComponent } from '@app/duty-details/duty-details.component';
+import { DutyWishDialogComponent } from '@app/duty-wish-dialog/duty-wish-dialog.component';
+import { HomeComponent } from '@app/home/home.component';
+import { LoginComponent } from '@app/login/login.component';
+import { MaterialModule } from '@app/material-module';
+import { NavbarComponent } from '@app/navbar/navbar.component';
+import { RoutingModule } from '@app/routing-module';
+import { WishDetailsComponent } from '@app/wish-details/wish-details.component';
 
 @NgModule({
   declarations: [
@@ -43,4 +42,5 @@ import { WishDetailsComponent } from './wish-details/wish-details.component';
   bootstrap: [AppComponent]
 })
 export class AppModule {
+  // Intentionally empty
 }

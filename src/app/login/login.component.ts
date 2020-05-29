@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthenticationService } from '@app/_services/authentication.service';
+import { AuthenticationService } from '@app/_services';
 import { first } from 'rxjs/operators';
 
 @Component({
