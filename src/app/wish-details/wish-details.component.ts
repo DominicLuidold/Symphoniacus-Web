@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Input } from '@angular/core';
-
+import { Component, Input, OnInit } from '@angular/core';
+import { first } from 'rxjs/operators';
 import { Duty } from '../_models/duty';
 import { BaseWish } from '../_models/wish';
 import { WishService } from '../_services/wish.service';
@@ -13,12 +12,22 @@ import { WishService } from '../_services/wish.service';
 export class WishDetailsComponent implements OnInit {
   displayedColumns: string[] = ['target-icon', 'type-target', 'status', 'reason', 'edit'];
   @Input() duty: Duty;
-  wishes: BaseWish[];
+  wishes: BaseWish[] = [];
 
-  constructor(private wishService: WishService) { }
+  constructor(private wishService: WishService) {
+    // Intentionally empty
+  }
 
   ngOnInit(): void {
-    this.wishes = this.wishService.getAllForDuty(this.duty.dutyId);
-    this.wishes = this.wishes.concat(this.wishService.getAllForDate(this.duty.start));
+    this.wishes = this.wishService.getAllForDuty(this.duty.dutyId); // TODO - Refactor to use API when ready
+
+    this.wishService.getAllDateWishes().pipe(first()).subscribe(response => {
+      this.wishes = this.wishes.concat(
+        response.payload.filter(wish => {
+          return (Date.parse(this.duty.start) >= Date.parse(wish.details.start)
+            && Date.parse(this.duty.start) <= Date.parse(wish.details.end));
+        })
+      );
+    });
   }
 }

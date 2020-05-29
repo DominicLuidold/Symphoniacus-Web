@@ -1,16 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
-import { Duty } from '../_models/duty';
+import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { duties } from '../duties';
+import { Duty } from '../_models/duty';
+import { Response } from '../_models/response';
 
 @Injectable({ providedIn: 'root' })
 export class DutyService {
-  constructor(private http: HttpClient) { }
 
-  getById(dutyId: number) {
-    return duties.find(duty => duty.dutyId === dutyId);
-    // return this.http.get<Duty>(`${environment.apiUrl}/duties/${dutyId}`); // TODO - Refactor to use API when ready
+  constructor(private http: HttpClient) {
+    // Intentionally empty
+  }
+
+  getById(dutyId: number): Observable<Response<Duty>> {
+    return this.http.get<Response<Duty>>(`${ environment.apiUrl }/duties/${ dutyId }`);
   }
 }

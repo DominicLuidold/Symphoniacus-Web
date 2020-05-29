@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
-
+import { first } from 'rxjs/operators';
 import { Duty } from '../_models/duty';
 import { DutyService } from '../_services/duty.service';
 
@@ -15,16 +14,16 @@ export class DutyDetailsComponent implements OnInit {
   duty: Duty;
   tableData: Duty[];
 
-  constructor(
-    private route: ActivatedRoute,
-    private dutyService: DutyService,
-    public dialog: MatDialog
-  ) { }
+  constructor(private route: ActivatedRoute, private dutyService: DutyService) {
+    // Intentionally empty
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      this.duty = this.dutyService.getById(+params.get('dutyId')); // TODO Pipe etc!
-      this.tableData = new Array(this.duty);
+      this.dutyService.getById(+params.get('dutyId')).pipe(first()).subscribe(response => {
+        this.duty = response.payload;
+        this.tableData = new Array(this.duty);
+      });
     });
   }
 }

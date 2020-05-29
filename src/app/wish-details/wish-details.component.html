@@ -1,6 +1,6 @@
 <h2>Existing Requests for this Duty</h2>
 
-<div>
+<div *ngIf="wishes">
   <table mat-table [dataSource]="wishes" class="mat-elevation-z4">
     <!-- Target Icon -->
     <ng-container matColumnDef="target-icon">
@@ -14,19 +14,19 @@
     <!-- Type & Target -->
     <ng-container matColumnDef="type-target">
       <th mat-header-cell *matHeaderCellDef>Request Type</th>
-      <td mat-cell *matCellDef="let wish">{{ wish.type + ' ' + wish.target | titlecase }}</td>
+      <td mat-cell *matCellDef="let wish">{{ (wish.wishType + ' ' + wish.target | titlecase) || '/' }}</td>
     </ng-container>
 
     <!-- Status -->
     <ng-container matColumnDef="status">
       <th mat-header-cell *matHeaderCellDef>Status</th>
-      <td mat-cell *matCellDef="let wish">{{ wish.status | titlecase }}</td>
+      <td mat-cell *matCellDef="let wish">{{ (wish.status | titlecase) || '/' }}</td>
     </ng-container>
 
     <!-- Reason -->
     <ng-container matColumnDef="reason">
       <th mat-header-cell *matHeaderCellDef>Reason</th>
-      <td mat-cell *matCellDef="let wish">{{ wish.reason}}</td>
+      <td mat-cell *matCellDef="let wish">{{ wish.reason || '/' }}</td>
     </ng-container>
 
     <!-- Edit -->
@@ -40,6 +40,8 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns; let wish" [class.negative-wish]="wish.type == 'NEGATIVE'"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns; let wish"
+        [class.negative-wish]="wish.wishType == 'NEGATIVE'"
+    ></tr>
   </table>
 </div>
