@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Input } from '@angular/core';
 
 import { Duty } from '../_models/duty';
-import { wishes } from '../wishes';
+import { BaseWish } from '../_models/wish';
+import { WishService } from '../_services/wish.service';
 
 @Component({
   selector: 'app-wish-details',
@@ -10,13 +11,14 @@ import { wishes } from '../wishes';
   styleUrls: ['./wish-details.component.css']
 })
 export class WishDetailsComponent implements OnInit {
-  displayedColumns: string[] = ['type', 'date', 'details', 'edit'];
+  displayedColumns: string[] = ['target-icon', 'type-target', 'status', 'reason', 'edit'];
   @Input() duty: Duty;
-  wish;
+  wishes: BaseWish[];
 
-  constructor() { }
+  constructor(private wishService: WishService) { }
 
   ngOnInit(): void {
-    this.wish = new Array(wishes.find(o => o.dutyId === this.duty.dutyId));
+    this.wishes = this.wishService.getAllForDuty(this.duty.dutyId);
+    this.wishes = this.wishes.concat(this.wishService.getAllForDate(this.duty.start));
   }
 }
