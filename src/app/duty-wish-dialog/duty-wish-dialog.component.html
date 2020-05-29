@@ -1,0 +1,57 @@
+<h1 mat-dialog-title>Add a Positive / Negative Duty Request</h1>
+<mat-dialog-content>
+  <form>
+    <!-- Wish Type -->
+    <p>
+      <mat-form-field class="full-width">
+        <mat-label>Duty Request Type</mat-label>
+        <mat-select [(value)]="selectedWishType" [formControl]="wishTypeFormControl">
+          <mat-option [value]="option.value" *ngFor="let option of wishTypes">{{ option.viewValue }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="wishTypeFormControl.hasError('required')">
+          A Request type is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </p>
+
+    <!-- TODO -->
+    <!-- Musical Pieces
+    <p>
+      <mat-card class="mat-elevation-z4">
+        <mat-card-content>
+          <h2 class="example-h2">Musical Pieces</h2>
+
+          <section>
+            <mat-checkbox class="example-margin" [(ngModel)]="checked">Checked</mat-checkbox>
+            <mat-checkbox class="example-margin" [(ngModel)]="indeterminate">Indeterminate</mat-checkbox>
+          </section>
+        </mat-card-content>
+      </mat-card>
+    </p> -->
+
+    <!-- Reason -->
+    <p>
+      <mat-form-field class="full-width">
+        <mat-label>Reason</mat-label>
+        <input matInput [formControl]="reasonFormControl" placeholder="Reason">
+        <mat-error *ngIf="reasonFormControl.hasError('required')">
+          A reason is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="!reasonFormControl.hasError('required') && reasonFormControl.hasError('maxlength')">
+          The reason has a maximum length of <strong>45</strong> characters
+        </mat-error>
+      </mat-form-field>
+    </p>
+
+    <!-- Series Of Performances toggle -->
+    <p>
+      <mat-slide-toggle>Apply to all Duties of this Series Of Performances</mat-slide-toggle>
+    </p>
+  </form>
+</mat-dialog-content>
+
+<!-- Dialog action buttons -->
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true">Submit Request</button>
+</mat-dialog-actions>

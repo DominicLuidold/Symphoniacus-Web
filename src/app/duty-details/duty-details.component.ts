@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { Duty } from '../_models/duty';
 import { DutyService } from '../_services/duty.service';
+import { DutyWishDialogComponent } from '../duty-wish-dialog/duty-wish-dialog.component';
 
 @Component({
   selector: 'app-duty-details',
@@ -14,7 +16,11 @@ export class DutyDetailsComponent implements OnInit {
   duty: Duty;
   tableData: Duty[];
 
-  constructor(private route: ActivatedRoute, private dutyService: DutyService) {
+  constructor(
+    private route: ActivatedRoute,
+    private dutyService: DutyService,
+    public dialog: MatDialog // TODO - Check if public is necessary
+  ) {
     // Intentionally empty
   }
 
@@ -24,6 +30,16 @@ export class DutyDetailsComponent implements OnInit {
         this.duty = response.payload;
         this.tableData = new Array(this.duty);
       });
+    });
+  }
+
+  openDutyWishDialog() {
+    const dialogRef = this.dialog.open(DutyWishDialogComponent, {
+      data: this.duty.seriesOfPerformances.musicalPieces
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('TODO - Request dialog closed'); // TODO - Save Wish
     });
   }
 }

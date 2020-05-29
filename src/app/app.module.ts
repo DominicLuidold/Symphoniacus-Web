@@ -1,19 +1,17 @@
-// Angular modules
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-
-// Custom stuff
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ErrorInterceptor } from './_helpers/error.interceptor';
+import { JwtInterceptor } from './_helpers/jwt.interceptor';
+import { MusicalPieceDividerPipe } from './_pipes/musical-piece-divider.pipe';
 import { AppComponent } from './app.component';
 import { DutyDetailsComponent } from './duty-details/duty-details.component';
-import { ErrorInterceptor } from './_helpers/error.interceptor';
+import { DutyWishDialogComponent } from './duty-wish-dialog/duty-wish-dialog.component';
 import { HomeComponent } from './home/home.component';
-import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { LoginComponent } from './login/login.component';
 import { MaterialModule } from './material-module';
-import { MusicalPieceDividerPipe } from './_pipes/musical-piece-divider.pipe';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RoutingModule } from './routing-module';
 import { WishDetailsComponent } from './wish-details/wish-details.component';
@@ -22,6 +20,7 @@ import { WishDetailsComponent } from './wish-details/wish-details.component';
   declarations: [
     AppComponent,
     DutyDetailsComponent,
+    DutyWishDialogComponent,
     HomeComponent,
     LoginComponent,
     MusicalPieceDividerPipe,
@@ -43,4 +42,5 @@ import { WishDetailsComponent } from './wish-details/wish-details.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

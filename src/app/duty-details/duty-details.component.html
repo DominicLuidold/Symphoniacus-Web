@@ -46,7 +46,7 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 
-  <button onclick="alert('Not yet implemented!')" mat-raised-button color="primary">
+  <button (click)="openDutyWishDialog()" mat-raised-button color="primary">
     <mat-icon>add</mat-icon>
     Add Wish Request
   </button>

@@ -21,3 +21,8 @@ export interface DutyWish extends BaseWish {
     forEntireSop: boolean;
   };
 }
+
+export interface WishType {
+  value: string;
+  viewValue: string;
+}
