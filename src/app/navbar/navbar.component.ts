@@ -18,7 +18,7 @@ export class NavbarComponent implements OnInit {
     // Intentionally empty
   }
 
-  logout() {
+  logout(): void {
     this.authenticationService.logout();
   }
 }

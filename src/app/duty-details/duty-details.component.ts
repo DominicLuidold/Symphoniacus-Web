@@ -33,7 +33,7 @@ export class DutyDetailsComponent implements OnInit {
     });
   }
 
-  openDutyWishDialog() {
+  openDutyWishDialog(): void {
     const dialogRef = this.dialog.open(DutyWishDialogComponent, {
       data: this.duty.seriesOfPerformances.musicalPieces
     });
