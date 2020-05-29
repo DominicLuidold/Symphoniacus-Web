@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-
 import { MusicalPiece } from '../_models/musicalPiece';
 
 @Pipe({
