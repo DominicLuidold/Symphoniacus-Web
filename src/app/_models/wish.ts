@@ -3,7 +3,7 @@ import { MusicalPiece } from '@app/_models';
 export interface BaseWish {
   wishType: 'POSITIVE' | 'NEGATIVE';
   target: 'DATE' | 'DUTY';
-  status: 'APPROVED' | 'REVIEW' | 'REJECTED';
+  status?: 'APPROVED' | 'REVIEW' | 'REJECTED';
   reason: string;
 }
 
@@ -23,6 +23,6 @@ export interface DutyWish extends BaseWish {
 }
 
 export interface WishType {
-  value: string;
+  value: 'POSITIVE' | 'NEGATIVE';
   viewValue: string;
 }
