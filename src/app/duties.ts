@@ -12,7 +12,7 @@ export const duties: Duty[] = [
     end: '2020-05-01 18:30:00',
     seriesOfPerformances: {
       seriesOfPerformancesId: 1,
-      description: 'Nino On Ice',
+      description: 'On Ice - Special Edition',
       musicalPieces: [
         {
           musicalPieceId: 1,
