@@ -7,20 +7,26 @@ import { NgModule } from '@angular/core';
 
 // Custom stuff
 import { AppComponent } from './app.component';
+import { DutyDetailsComponent } from './duty-details/duty-details.component';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { HomeComponent } from './home/home.component';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { LoginComponent } from './login/login.component';
 import { MaterialModule } from './material-module';
+import { MusicalPieceDividerPipe } from './_pipes/musical-piece-divider.pipe';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RoutingModule } from './routing-module';
+import { WishDetailsComponent } from './wish-details/wish-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    DutyDetailsComponent,
     HomeComponent,
-    NavbarComponent,
     LoginComponent,
+    MusicalPieceDividerPipe,
+    NavbarComponent,
+    WishDetailsComponent,
   ],
   imports: [
     BrowserModule,

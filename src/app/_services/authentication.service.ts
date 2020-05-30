@@ -1,9 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-
 import { environment } from '../../environments/environment';
 import { User } from '../_models/user';
 
@@ -12,10 +11,7 @@ export class AuthenticationService {
   private userSubject: BehaviorSubject<User>;
   public user: Observable<User>;
 
-  constructor(
-    private router: Router,
-    private http: HttpClient
-  ) {
+  constructor(private router: Router, private http: HttpClient) {
     this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.user = this.userSubject.asObservable();
   }
@@ -26,7 +22,7 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string) {
-    return this.http.post<any>(`${environment.apiUrl}/login`, { username, password })
+    return this.http.post<any>(`${ environment.apiUrl }/login`, { username, password })
       .pipe(map(data => {
         // Parse JSON object from base64 encoded JWT token
         const jwtTokenData = JSON.parse(atob(JSON.stringify(data).split('.')[1]));

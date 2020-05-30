@@ -11,6 +11,14 @@ body {
   margin: 0;
 }
 
+h2 {
+  font-weight: lighter;
+}
+
+table {
+  width: 100%;
+}
+
 .container {
   width: 100%;
   padding-right: 15px;
