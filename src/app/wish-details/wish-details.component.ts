@@ -9,8 +9,9 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./wish-details.component.css']
 })
 export class WishDetailsComponent implements OnInit {
-  displayedColumns: string[] = ['target-icon', 'type-target', 'status', 'reason', 'edit'];
   @Input() duty: Duty;
+
+  displayedColumns: string[] = ['target-icon', 'type-target', 'status', 'reason', 'edit'];
   wishes: BaseWish[] = [];
 
   constructor(private wishService: WishService) {

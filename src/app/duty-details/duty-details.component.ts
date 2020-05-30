@@ -19,7 +19,7 @@ export class DutyDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private dutyService: DutyService,
-    public dialog: MatDialog // TODO - Check if public is necessary
+    private dialog: MatDialog
   ) {
     // Intentionally empty
   }
@@ -35,11 +35,11 @@ export class DutyDetailsComponent implements OnInit {
 
   openDutyWishDialog(): void {
     const dialogRef = this.dialog.open(DutyWishDialogComponent, {
-      data: this.duty.seriesOfPerformances.musicalPieces
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('TODO - Request dialog closed'); // TODO - Save Wish
+      width: '600px', // A CSS solution would have been nicer.. :(
+      data: {
+        dutyId: this.duty.dutyId,
+        musicalPieces: this.duty.seriesOfPerformances.musicalPieces
+      }
     });
   }
 }

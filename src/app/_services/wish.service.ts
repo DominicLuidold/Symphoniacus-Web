@@ -20,4 +20,8 @@ export class WishService {
   getAllDateWishes(): Observable<Response<DateWish[]>> {
     return this.http.get<Response<DateWish[]>>(`${ environment.apiUrl }/datewishes`);
   }
+
+  addDutyWish(wish: DutyWish): Observable<Response<DutyWish>> {
+    return this.http.post<Response<DutyWish>>(`${ environment.apiUrl }/duties/${ wish.details.dutyId }/wishes`, wish);
+  }
 }

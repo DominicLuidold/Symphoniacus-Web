@@ -1,3 +1,19 @@
 mat-dialog-actions {
   justify-content: flex-end;
 }
+
+form > * {
+  margin-bottom: 25px;
+}
+
+section {
+  font-size: 16px;
+}
+
+/deep/ .mat-slide-toggle-bar {
+  margin-bottom: 15px !important;
+}
+
+.mat-card-content > mat-card-subtitle {
+  margin-top: 15px !important;
+}
