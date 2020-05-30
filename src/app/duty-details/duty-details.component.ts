@@ -12,7 +12,7 @@ import { DutyService } from '../_services/duty.service';
 export class DutyDetailsComponent implements OnInit {
   displayedColumns: string[] = ['start', 'end', 'category', 'description', 'seriesOfPerformances', 'musicalPieces'];
   duty: Duty;
-  tableData: Duty[];
+  dutyDataSource: Duty[];
 
   constructor(private route: ActivatedRoute, private dutyService: DutyService) {
     // Intentionally empty
@@ -20,9 +20,9 @@ export class DutyDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      this.dutyService.getById(+params.get('dutyId')).pipe(first()).subscribe(response => {
-        this.duty = response.payload;
-        this.tableData = new Array(this.duty);
+      this.dutyService.getById(+params.get('dutyId')).pipe(first()).subscribe(duty => {
+        this.duty = duty;
+        this.dutyDataSource = new Array(duty);
       });
     });
   }

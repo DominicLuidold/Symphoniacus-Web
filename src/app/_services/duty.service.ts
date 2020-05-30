@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { Duty } from '../_models/duty';
 import { Response } from '../_models/response';
@@ -12,7 +13,12 @@ export class DutyService {
     // Intentionally empty
   }
 
-  getById(dutyId: number): Observable<Response<Duty>> {
-    return this.http.get<Response<Duty>>(`${ environment.apiUrl }/duties/${ dutyId }`);
+  /**
+   * Returns a Duty for a given id.
+   *
+   * @param dutyId The id of a duty
+   */
+  getById(dutyId: number): Observable<Duty> {
+    return this.http.get<Response<Duty>>(`${ environment.apiUrl }/duties/${ dutyId }`).pipe(map(response => response.payload));
   }
 }
