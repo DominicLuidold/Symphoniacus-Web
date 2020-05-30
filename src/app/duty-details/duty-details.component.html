@@ -1,7 +1,7 @@
 <h2>Duty Details</h2>
 
 <div *ngIf="duty">
-  <table mat-table [dataSource]="tableData" class="mat-elevation-z4">
+  <table mat-table [dataSource]="dutyDataSource" class="mat-elevation-z4">
     <!-- Start date & time -->
     <ng-container matColumnDef="start">
       <th mat-header-cell *matHeaderCellDef>Start Date & Time</th>
