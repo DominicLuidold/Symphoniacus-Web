@@ -28,6 +28,9 @@
             {{ musicalPiece.name }}
           </mat-checkbox>
         </section>
+        <section>
+          <mat-checkbox *ngIf="forEntireSop" [checked]="true" [disabled]="true">...</mat-checkbox>
+        </section>
         <mat-card-subtitle *ngIf="selectedMusicalPieces.length === 0">
           Please select at least <strong>one</strong> Musical Piece
         </mat-card-subtitle>

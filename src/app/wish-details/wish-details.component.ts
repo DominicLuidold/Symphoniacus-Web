@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
 })
 export class WishDetailsComponent implements OnInit {
   @Input() duty: Duty;
-  displayedColumns: string[] = ['target-icon', 'type-target', 'status', 'reason', 'edit'];
+  displayedColumns: string[] = ['target-icon', 'type-target', 'status', 'reason', 'edit', 'delete'];
   wishes: Observable<BaseWish[]>;
 
   constructor(private wishService: WishService) {

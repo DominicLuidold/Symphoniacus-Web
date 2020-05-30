@@ -39,6 +39,16 @@
       </td>
     </ng-container>
 
+    <!-- Delete -->
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef>Delete</th>
+      <td mat-cell *matCellDef>
+        <button mat-icon-button>
+          <mat-icon>delete_forever</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns; let wish"
         [class.negative-wish]="wish.wishType == 'NEGATIVE'"
