@@ -11,7 +11,12 @@ export class DutyService {
     // Intentionally empty
   }
 
-  getById(dutyId: number): Observable<Response<Duty>> {
-    return this.http.get<Response<Duty>>(`${ environment.apiUrl }/duties/${ dutyId }`);
+  /**
+   * Returns a Duty for a given id.
+   *
+   * @param dutyId The id of a duty
+   */
+  getById(dutyId: number): Observable<Duty> {
+    return this.http.get<Response<Duty>>(`${ environment.apiUrl }/duties/${ dutyId }`).pipe(map(response => response.payload));
   }
 }
