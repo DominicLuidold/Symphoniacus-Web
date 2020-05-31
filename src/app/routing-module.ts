@@ -1,9 +1,8 @@
-import { Routes, RouterModule } from '@angular/router';
-
-import { AuthGuard } from './_helpers/auth.guard';
-import { DutyDetailsComponent } from './duty-details/duty-details.component';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
+import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '@app/_helpers';
+import { DutyDetailsComponent } from '@app/duty-details/duty-details.component';
+import { HomeComponent } from '@app/home/home.component';
+import { LoginComponent } from '@app/login/login.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },

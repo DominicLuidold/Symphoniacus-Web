@@ -1,18 +1,20 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { forkJoin, Observable } from 'rxjs';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { BaseWish, Duty } from '@app/_models';
+import { WishService } from '@app/_services';
+import { forkJoin, Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Duty } from '../_models/duty';
-import { BaseWish } from '../_models/wish';
-import { WishService } from '../_services/wish.service';
 
 @Component({
   selector: 'app-wish-details',
   templateUrl: './wish-details.component.html',
   styleUrls: ['./wish-details.component.css']
 })
-export class WishDetailsComponent implements OnInit {
+export class WishDetailsComponent implements OnInit, OnDestroy {
   @Input() duty: Duty;
-  displayedColumns: string[] = ['target-icon', 'type-target', 'status', 'reason', 'edit'];
+  @Input() newDutyWishEvent: Observable<void>;
+  private newDutyWishSubscription: Subscription;
+
+  displayedColumns: string[] = ['target-icon', 'type-target', 'status', 'reason', 'edit', 'delete'];
   wishes: Observable<BaseWish[]>;
 
   constructor(private wishService: WishService) {
@@ -20,6 +22,15 @@ export class WishDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadWishes();
+    this.newDutyWishSubscription = this.newDutyWishEvent.subscribe(() => this.loadWishes());
+  }
+
+  ngOnDestroy() {
+    this.newDutyWishSubscription.unsubscribe();
+  }
+
+  loadWishes() {
     // Join Observables from DutyWishes and DateWishes
     this.wishes = forkJoin([
       this.wishService.getDutyWishesForDuty(this.duty.dutyId),

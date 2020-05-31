@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthenticationService } from '@app/_services';
 import { first } from 'rxjs/operators';
-import { AuthenticationService } from '../_services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -28,12 +28,12 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     // Get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.loading = true;
     this.authenticationService.login(this.usernameFormControl.value, this.passwordFormControl.value)
       .pipe(first())
@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
       });
   }
 
-  openSnackBar(message: string, action: string) {
+  openSnackBar(message: string, action: string): void {
     this.snackBar.open(message, action, {
       duration: 3000,
     });

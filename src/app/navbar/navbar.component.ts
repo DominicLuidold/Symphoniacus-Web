@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../_models/user';
-import { AuthenticationService } from '../_services/authentication.service';
+import { User } from '@app/_models';
+import { AuthenticationService } from '@app/_services';
 
 @Component({
   selector: 'app-nav-bar',
@@ -18,7 +18,7 @@ export class NavbarComponent implements OnInit {
     // Intentionally empty
   }
 
-  logout() {
+  logout(): void {
     this.authenticationService.logout();
   }
 }

@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BaseWish, DateWish, DutyWish, Response } from '@app/_models';
+import { environment } from '@environments/environment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { environment } from '../../environments/environment';
-import { Response } from '../_models/response';
-import { BaseWish, DateWish, DutyWish } from '../_models/wish';
 
 @Injectable({ providedIn: 'root' })
 export class WishService {
@@ -14,7 +13,7 @@ export class WishService {
   }
 
   /**
-   * Returns all {@link DutyWish}es for a Duty.
+   * Returns all {@link DutyWish}es for a {@link Duty}.
    *
    * @param dutyId The id of a duty
    */
@@ -36,6 +35,17 @@ export class WishService {
           return (Date.parse(date) >= Date.parse(dateWish.details.start) && Date.parse(date) <= Date.parse(dateWish.details.end));
         })
       )
+    );
+  }
+
+  /**
+   * Creates a new {@link DutyWish} to a {@link Duty}.
+   *
+   * @param wish The Duty Wish to create
+   */
+  addDutyWish(wish: DutyWish): Observable<DutyWish> {
+    return this.http.post<Response<DutyWish>>(`${ environment.apiUrl }/duties/${ wish.details.dutyId }/wishes`, wish).pipe(
+      map(response => response.payload)
     );
   }
 }

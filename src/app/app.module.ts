@@ -1,27 +1,25 @@
-// Angular modules
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-
-// Custom stuff
-import { AppComponent } from './app.component';
-import { DutyDetailsComponent } from './duty-details/duty-details.component';
-import { ErrorInterceptor } from './_helpers/error.interceptor';
-import { HomeComponent } from './home/home.component';
-import { JwtInterceptor } from './_helpers/jwt.interceptor';
-import { LoginComponent } from './login/login.component';
-import { MaterialModule } from './material-module';
-import { MusicalPieceDividerPipe } from './_pipes/musical-piece-divider.pipe';
-import { NavbarComponent } from './navbar/navbar.component';
-import { RoutingModule } from './routing-module';
-import { WishDetailsComponent } from './wish-details/wish-details.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ErrorInterceptor, JwtInterceptor } from '@app/_helpers';
+import { MusicalPieceDividerPipe } from '@app/_pipes';
+import { AppComponent } from '@app/app.component';
+import { DutyDetailsComponent } from '@app/duty-details/duty-details.component';
+import { DutyWishDialogComponent } from '@app/duty-wish-dialog/duty-wish-dialog.component';
+import { HomeComponent } from '@app/home/home.component';
+import { LoginComponent } from '@app/login/login.component';
+import { MaterialModule } from '@app/material-module';
+import { NavbarComponent } from '@app/navbar/navbar.component';
+import { RoutingModule } from '@app/routing-module';
+import { WishDetailsComponent } from '@app/wish-details/wish-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DutyDetailsComponent,
+    DutyWishDialogComponent,
     HomeComponent,
     LoginComponent,
     MusicalPieceDividerPipe,
@@ -43,4 +41,6 @@ import { WishDetailsComponent } from './wish-details/wish-details.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  // Intentionally empty
+}

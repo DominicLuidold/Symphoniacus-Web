@@ -1,5 +1,4 @@
-import { DutyCategory } from './dutyCategory';
-import { SeriesOfPerformances } from './seriesOfPerformances';
+import { DutyCategory, SeriesOfPerformances } from '@app/_models';
 
 export interface Duty {
   dutyId: number;
