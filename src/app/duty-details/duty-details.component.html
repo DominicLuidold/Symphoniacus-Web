@@ -48,14 +48,14 @@
 
   <button (click)="openDutyWishDialog()" mat-raised-button color="primary">
     <mat-icon>add</mat-icon>
-    Add Wish Request
+    Add Duty Request
   </button>
 
   <app-wish-details [duty]="duty" [newDutyWishEvent]="newDutyWishSubject.asObservable()"></app-wish-details>
 
   <mat-divider></mat-divider>
 
-  <button onclick="alert('Not yet implemented!')" mat-raised-button color="accent">
+  <button [routerLink]="['/duty-overview']" mat-raised-button color="accent">
     <mat-icon>keyboard_arrow_left</mat-icon>
     Back To Overview
   </button>

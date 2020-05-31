@@ -14,6 +14,7 @@ import { MaterialModule } from '@app/material-module';
 import { NavbarComponent } from '@app/navbar/navbar.component';
 import { RoutingModule } from '@app/routing-module';
 import { WishDetailsComponent } from '@app/wish-details/wish-details.component';
+import { DutyOverviewComponent } from './duty-overview/duty-overview.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { WishDetailsComponent } from '@app/wish-details/wish-details.component';
     MusicalPieceDividerPipe,
     NavbarComponent,
     WishDetailsComponent,
+    DutyOverviewComponent,
   ],
   imports: [
     BrowserModule,
