@@ -45,10 +45,10 @@ export class DutyDetailsComponent implements OnInit {
         musicalPieces: this.duty.seriesOfPerformances.musicalPieces
       }
     });
-    dialogRef.componentInstance.newDutyWish.subscribe(response => {
-      // If a response is given, adding was not successful
-      if (response) {
-        this.snackBar.open(response, 'Close', {
+    dialogRef.componentInstance.newDutyWish.subscribe(error => {
+      // If an error is given, adding was not successful
+      if (error) {
+        this.snackBar.open(error, 'Close', {
           duration: 3000,
         });
       } else {
