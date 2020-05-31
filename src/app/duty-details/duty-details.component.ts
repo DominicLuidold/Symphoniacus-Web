@@ -14,7 +14,7 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./duty-details.component.css']
 })
 export class DutyDetailsComponent implements OnInit {
-  newDutyWishSubject: Subject<void> = new Subject();
+  wishUpdateSubject: Subject<void> = new Subject();
   displayedColumns: string[] = ['start', 'end', 'category', 'description', 'seriesOfPerformances', 'musicalPieces'];
   duty: Duty;
   dutyDataSource: Duty[];
@@ -45,14 +45,14 @@ export class DutyDetailsComponent implements OnInit {
         musicalPieces: this.duty.seriesOfPerformances.musicalPieces
       }
     });
-    dialogRef.componentInstance.newDutyWish.subscribe(error => {
+    dialogRef.componentInstance.wishUpdate.subscribe(error => {
       // If an error is given, adding was not successful
       if (error) {
         this.snackBar.open(error, 'Close', {
           duration: 3000,
         });
       } else {
-        this.newDutyWishSubject.next();
+        this.wishUpdateSubject.next();
       }
     });
   }

@@ -11,8 +11,8 @@ import { map } from 'rxjs/operators';
 })
 export class WishDetailsComponent implements OnInit, OnDestroy {
   @Input() duty: Duty;
-  @Input() newDutyWishEvent: Observable<void>;
-  private newDutyWishSubscription: Subscription;
+  @Input() wishUpdateEvent: Observable<void>;
+  private wishUpdateSubscription: Subscription;
 
   displayedColumns: string[] = ['target-icon', 'type-target', 'status', 'reason', 'edit', 'delete'];
   wishes: Observable<BaseWish[]>;
@@ -23,11 +23,11 @@ export class WishDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loadWishes();
-    this.newDutyWishSubscription = this.newDutyWishEvent.subscribe(() => this.loadWishes());
+    this.wishUpdateSubscription = this.wishUpdateEvent.subscribe(() => this.loadWishes());
   }
 
   ngOnDestroy() {
-    this.newDutyWishSubscription.unsubscribe();
+    this.wishUpdateSubscription.unsubscribe();
   }
 
   loadWishes() {

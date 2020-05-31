@@ -11,7 +11,7 @@ import { WishService } from '@app/_services';
   styleUrls: ['./duty-wish-dialog.component.css']
 })
 export class DutyWishDialogComponent implements OnInit {
-  @Output() newDutyWish: EventEmitter<any> = new EventEmitter();
+  @Output() wishUpdate: EventEmitter<any> = new EventEmitter();
   wishTypes: WishType[] = [
     { value: 'POSITIVE', viewValue: 'Positive Duty Request' },
     { value: 'NEGATIVE', viewValue: 'Negative Duty Request' }
@@ -67,11 +67,11 @@ export class DutyWishDialogComponent implements OnInit {
     this.wishService.addDutyWish(dutyWish).subscribe({
       // Emit nothing if Duty Wish was added successfully
       next: () => {
-        this.newDutyWish.emit();
+        this.wishUpdate.emit();
       },
       // Emit error message if Duty Wish could not be added
       error: error => {
-        this.newDutyWish.emit(error);
+        this.wishUpdate.emit(error);
       }
     });
   }
