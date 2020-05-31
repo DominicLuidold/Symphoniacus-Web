@@ -1,6 +1,9 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { BaseWish, Duty } from '@app/_models';
 import { WishService } from '@app/_services';
+import { DeleteWishDialogComponent } from '@app/delete-wish-dialog/delete-wish-dialog.component';
 import { forkJoin, Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -17,7 +20,11 @@ export class WishDetailsComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['target-icon', 'type-target', 'status', 'reason', 'edit', 'delete'];
   wishes: Observable<BaseWish[]>;
 
-  constructor(private wishService: WishService) {
+  constructor(
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar,
+    private wishService: WishService
+  ) {
     // Intentionally empty
   }
 
@@ -36,5 +43,30 @@ export class WishDetailsComponent implements OnInit, OnDestroy {
       this.wishService.getDutyWishesForDuty(this.duty.dutyId),
       this.wishService.getDateWishesForDate(this.duty.start)
     ]).pipe(map(([dutyWishes, dateWishes]) => dutyWishes.concat(dateWishes)));
+  }
+
+  deleteWishDialog(wish: BaseWish): void {
+    const dialogRef = this.dialog.open(DeleteWishDialogComponent);
+    dialogRef.afterClosed().subscribe(deleteWish => {
+      if (deleteWish) {
+        if (wish.target === 'DATE') {
+          this.wishService.deleteDateWish(wish).subscribe({
+            error: err => this.openSnackBar(err, 'Close')
+          });
+        } else {
+          this.wishService.deleteDutyWish(wish, this.duty.dutyId).subscribe({
+            error: err => this.openSnackBar(err, 'Close')
+          });
+        }
+        // We have to wait for one second to prevent any overlapping in the backend
+        setTimeout(() => this.loadWishes(), 1000);
+      }
+    });
+  }
+
+  openSnackBar(message: string, action: string): void {
+    this.snackBar.open(message, action, {
+      duration: 3000,
+    });
   }
 }

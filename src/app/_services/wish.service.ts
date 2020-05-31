@@ -48,4 +48,23 @@ export class WishService {
       map(response => response.payload)
     );
   }
+
+  /**
+   * Deletes a {@link DutyWish} from a {@link Duty}.
+   *
+   * @param wish The Duty Wish to delete
+   * @param dutyId The Duty to delete the Wish from
+   */
+  deleteDutyWish(wish: BaseWish, dutyId: number): Observable<Response<any>> {
+    return this.http.delete<Response<any>>(`${ environment.apiUrl }/duties/${ dutyId }/wishes/${ wish.wishId }`);
+  }
+
+  /**
+   * Deletes a {@link DateWish}.
+   *
+   * @param wish The Date Wish to delete
+   */
+  deleteDateWish(wish: BaseWish): Observable<Response<any>> {
+    return this.http.delete<Response<any>>(`${ environment.apiUrl }/datewishes/${ wish.wishId }`);
+  }
 }
