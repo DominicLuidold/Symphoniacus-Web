@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Duty } from '@app/_models';
 import { DutyService } from '@app/_services';
 import { DutyWishDialogComponent } from '@app/duty-wish-dialog/duty-wish-dialog.component';
+import { Subject } from 'rxjs';
 import { first } from 'rxjs/operators';
 
 @Component({
@@ -12,6 +14,7 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./duty-details.component.css']
 })
 export class DutyDetailsComponent implements OnInit {
+  newDutyWishSubject: Subject<void> = new Subject();
   displayedColumns: string[] = ['start', 'end', 'category', 'description', 'seriesOfPerformances', 'musicalPieces'];
   duty: Duty;
   dutyDataSource: Duty[];
@@ -19,7 +22,8 @@ export class DutyDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private dutyService: DutyService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) {
     // Intentionally empty
   }
@@ -39,6 +43,16 @@ export class DutyDetailsComponent implements OnInit {
       data: {
         dutyId: this.duty.dutyId,
         musicalPieces: this.duty.seriesOfPerformances.musicalPieces
+      }
+    });
+    dialogRef.componentInstance.newDutyWish.subscribe(response => {
+      // If a response is given, adding was not successful
+      if (response) {
+        this.snackBar.open(response, 'Close', {
+          duration: 3000,
+        });
+      } else {
+        this.newDutyWishSubject.next();
       }
     });
   }

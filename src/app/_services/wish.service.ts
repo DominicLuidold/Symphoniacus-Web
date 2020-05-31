@@ -13,7 +13,7 @@ export class WishService {
   }
 
   /**
-   * Returns all {@link DutyWish}es for a Duty.
+   * Returns all {@link DutyWish}es for a {@link Duty}.
    *
    * @param dutyId The id of a duty
    */
@@ -38,7 +38,14 @@ export class WishService {
     );
   }
 
-  addDutyWish(wish: DutyWish): Observable<Response<DutyWish>> {
-    return this.http.post<Response<DutyWish>>(`${ environment.apiUrl }/duties/${ wish.details.dutyId }/wishes`, wish);
+  /**
+   * Creates a new {@link DutyWish} to a {@link Duty}.
+   *
+   * @param wish The Duty Wish to create
+   */
+  addDutyWish(wish: DutyWish): Observable<DutyWish> {
+    return this.http.post<Response<DutyWish>>(`${ environment.apiUrl }/duties/${ wish.details.dutyId }/wishes`, wish).pipe(
+      map(response => response.payload)
+    );
   }
 }

@@ -51,7 +51,7 @@
     Add Wish Request
   </button>
 
-  <app-wish-details [duty]="duty"></app-wish-details>
+  <app-wish-details [duty]="duty" [newDutyWishEvent]="newDutyWishSubject.asObservable()"></app-wish-details>
 
   <mat-divider></mat-divider>
 

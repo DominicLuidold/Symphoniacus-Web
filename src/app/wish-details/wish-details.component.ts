@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { BaseWish, Duty } from '@app/_models';
 import { WishService } from '@app/_services';
-import { forkJoin, Observable } from 'rxjs';
+import { forkJoin, Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -9,8 +9,11 @@ import { map } from 'rxjs/operators';
   templateUrl: './wish-details.component.html',
   styleUrls: ['./wish-details.component.css']
 })
-export class WishDetailsComponent implements OnInit {
+export class WishDetailsComponent implements OnInit, OnDestroy {
   @Input() duty: Duty;
+  @Input() newDutyWishEvent: Observable<void>;
+  private newDutyWishSubscription: Subscription;
+
   displayedColumns: string[] = ['target-icon', 'type-target', 'status', 'reason', 'edit', 'delete'];
   wishes: Observable<BaseWish[]>;
 
@@ -19,6 +22,15 @@ export class WishDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadWishes();
+    this.newDutyWishSubscription = this.newDutyWishEvent.subscribe(() => this.loadWishes());
+  }
+
+  ngOnDestroy() {
+    this.newDutyWishSubscription.unsubscribe();
+  }
+
+  loadWishes() {
     // Join Observables from DutyWishes and DateWishes
     this.wishes = forkJoin([
       this.wishService.getDutyWishesForDuty(this.duty.dutyId),

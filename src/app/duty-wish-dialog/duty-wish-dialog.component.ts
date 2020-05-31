@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MusicalPiece, WishType } from '@app/_models';
@@ -11,6 +11,7 @@ import { WishService } from '@app/_services';
   styleUrls: ['./duty-wish-dialog.component.css']
 })
 export class DutyWishDialogComponent implements OnInit {
+  @Output() newDutyWish: EventEmitter<any> = new EventEmitter();
   wishTypes: WishType[] = [
     { value: 'POSITIVE', viewValue: 'Positive Duty Request' },
     { value: 'NEGATIVE', viewValue: 'Negative Duty Request' }
@@ -64,8 +65,13 @@ export class DutyWishDialogComponent implements OnInit {
       }
     };
     this.wishService.addDutyWish(dutyWish).subscribe({
-      next: response => {
-        console.log('Duty Wish created', response.payload);
+      // Emit nothing if Duty Wish was added successfully
+      next: () => {
+        this.newDutyWish.emit();
+      },
+      // Emit error message if Duty Wish could not be added
+      error: error => {
+        this.newDutyWish.emit(error);
       }
     });
   }
