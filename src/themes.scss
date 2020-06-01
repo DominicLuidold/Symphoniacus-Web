@@ -1,0 +1,13 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$themes-map: (
+  indigo-pink: (
+    primary-base: $mat-indigo,
+    accent-base: $mat-pink,
+  )
+);
+
+@import '~angular-material-dynamic-themes/themes-core';
+@include make-stylesheets($themes-map);

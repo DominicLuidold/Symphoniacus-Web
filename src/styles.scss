@@ -1,14 +1,14 @@
+@import 'themes';
+
 /* Global Style */
 
-* {
-  font-family: 'Roboto', Arial, sans-serif;
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+html, body {
+  height: 100%;
 }
 
 body {
   margin: 0;
+  font-family: 'Roboto', 'Helvetica Neue', sans-serif;
 }
 
 h2 {
