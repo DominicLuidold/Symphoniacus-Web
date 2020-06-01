@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Symphoniacus-Web": {
+    "symphoniacus-web": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -68,18 +68,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "Symphoniacus-Web:build"
+            "browserTarget": "symphoniacus-web:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "Symphoniacus-Web:build:production"
+              "browserTarget": "symphoniacus-web:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Symphoniacus-Web:build"
+            "browserTarget": "symphoniacus-web:build"
           }
         },
         "test": {
@@ -117,16 +117,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "Symphoniacus-Web:serve"
+            "devServerTarget": "symphoniacus-web:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "Symphoniacus-Web:serve:production"
+              "devServerTarget": "symphoniacus-web:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "Symphoniacus-Web"
+  "defaultProject": "symphoniacus-web"
 }
