@@ -48,7 +48,7 @@ export class WishService {
   /**
    * Returns all {@link DateWish}es.
    */
-  getAllDateWishes(): Observable<BaseWish[]> {
+  getAllDateWishes(): Observable<DateWish[]> {
     return this.http.get<Response<DateWish[]>>(`${ environment.apiUrl }/datewishes`).pipe(
       map(response => response.payload)
     );

@@ -17,6 +17,7 @@ import { NavbarComponent } from '@app/navbar/navbar.component';
 import { RoutingModule } from '@app/routing-module';
 import { WishDetailsComponent } from '@app/wish-details/wish-details.component';
 import { WishOverviewComponent } from './wish-overview/wish-overview.component';
+import { DateWishOverviewComponent } from './date-wish-overview/date-wish-overview.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { WishOverviewComponent } from './wish-overview/wish-overview.component';
     DutyOverviewComponent,
     DeleteWishDialogComponent,
     WishOverviewComponent,
+    DateWishOverviewComponent,
   ],
   imports: [
     BrowserModule,
