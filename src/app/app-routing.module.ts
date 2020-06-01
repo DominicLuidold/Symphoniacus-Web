@@ -17,4 +17,4 @@ const routes: Routes = [
   { path: '**', redirectTo: '' }
 ];
 
-export const RoutingModule = RouterModule.forRoot(routes);
+export const AppRoutingModule = RouterModule.forRoot(routes);
