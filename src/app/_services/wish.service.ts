@@ -48,7 +48,7 @@ export class WishService {
   /**
    * Returns all {@link DateWish}es.
    */
-  getAllDateWishes(): Observable<BaseWish[]> {
+  getAllDateWishes(): Observable<DateWish[]> {
     return this.http.get<Response<DateWish[]>>(`${ environment.apiUrl }/datewishes`).pipe(
       map(response => response.payload)
     );
@@ -61,6 +61,17 @@ export class WishService {
    */
   addDutyWish(wish: DutyWish): Observable<DutyWish> {
     return this.http.post<Response<DutyWish>>(`${ environment.apiUrl }/duties/${ wish.details.dutyId }/wishes`, wish).pipe(
+      map(response => response.payload)
+    );
+  }
+
+  /**
+   * Creates a new {@link DateWish}.
+   *
+   * @param wish The Date Wish to create
+   */
+  addDateWish(wish: DateWish): Observable<DateWish> {
+    return this.http.post<Response<DateWish>>(`${ environment.apiUrl }/datewishes`, wish).pipe(
       map(response => response.payload)
     );
   }

@@ -1,6 +1,8 @@
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ErrorInterceptor, JwtInterceptor } from '@app/_helpers';
@@ -16,6 +18,8 @@ import { MaterialModule } from '@app/material-module';
 import { NavbarComponent } from '@app/navbar/navbar.component';
 import { RoutingModule } from '@app/routing-module';
 import { WishDetailsComponent } from '@app/wish-details/wish-details.component';
+import { DateWishDialogComponent } from './date-wish-dialog/date-wish-dialog.component';
+import { DateWishOverviewComponent } from './date-wish-overview/date-wish-overview.component';
 import { WishOverviewComponent } from './wish-overview/wish-overview.component';
 
 @NgModule({
@@ -31,6 +35,8 @@ import { WishOverviewComponent } from './wish-overview/wish-overview.component';
     DutyOverviewComponent,
     DeleteWishDialogComponent,
     WishOverviewComponent,
+    DateWishOverviewComponent,
+    DateWishDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +50,8 @@ import { WishOverviewComponent } from './wish-overview/wish-overview.component';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: MAT_DATE_LOCALE, useValue: 'de-AT' },
+    { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } }
   ],
   bootstrap: [AppComponent]
 })

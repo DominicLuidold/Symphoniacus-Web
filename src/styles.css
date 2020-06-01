@@ -19,6 +19,10 @@ table {
   width: 100%;
 }
 
+.negative-wish {
+  background-color: #ebc2c2 !important;
+}
+
 .full-width {
   width: 100%;
 }
