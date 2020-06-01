@@ -8,7 +8,7 @@ import { DutyService } from '@app/_services';
 @Component({
   selector: 'app-duty-overview',
   templateUrl: './duty-overview.component.html',
-  styleUrls: ['./duty-overview.component.css']
+  styleUrls: ['./duty-overview.component.scss']
 })
 export class DutyOverviewComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;

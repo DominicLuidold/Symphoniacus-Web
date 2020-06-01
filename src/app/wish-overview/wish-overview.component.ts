@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
 @Component({
   selector: 'app-wish-overview',
   templateUrl: './wish-overview.component.html',
-  styleUrls: ['./wish-overview.component.css']
+  styleUrls: ['./wish-overview.component.scss']
 })
 export class WishOverviewComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;

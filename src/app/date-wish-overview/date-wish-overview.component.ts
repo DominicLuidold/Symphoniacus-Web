@@ -12,7 +12,7 @@ import { DeleteWishDialogComponent } from '@app/delete-wish-dialog/delete-wish-d
 @Component({
   selector: 'app-date-wish-overview',
   templateUrl: './date-wish-overview.component.html',
-  styleUrls: ['./date-wish-overview.component.css']
+  styleUrls: ['./date-wish-overview.component.scss']
 })
 export class DateWishOverviewComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;

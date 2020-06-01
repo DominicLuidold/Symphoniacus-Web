@@ -11,7 +11,7 @@ import { first } from 'rxjs/operators';
 @Component({
   selector: 'app-duty-details',
   templateUrl: './duty-details.component.html',
-  styleUrls: ['./duty-details.component.css']
+  styleUrls: ['./duty-details.component.scss']
 })
 export class DutyDetailsComponent implements OnInit {
   wishUpdateSubject: Subject<void> = new Subject();

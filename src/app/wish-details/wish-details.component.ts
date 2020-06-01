@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
 @Component({
   selector: 'app-wish-details',
   templateUrl: './wish-details.component.html',
-  styleUrls: ['./wish-details.component.css']
+  styleUrls: ['./wish-details.component.scss']
 })
 export class WishDetailsComponent implements OnInit, OnDestroy {
   @Input() duty: Duty;
