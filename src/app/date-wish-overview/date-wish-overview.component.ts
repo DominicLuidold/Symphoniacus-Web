@@ -6,6 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { BaseWish, DateWish } from '@app/_models';
 import { WishService } from '@app/_services';
+import { DateWishDialogComponent } from '@app/date-wish-dialog/date-wish-dialog.component';
 import { DeleteWishDialogComponent } from '@app/delete-wish-dialog/delete-wish-dialog.component';
 
 @Component({
@@ -49,6 +50,25 @@ export class DateWishOverviewComponent implements OnInit {
       this.dataSource.data = dateWishes;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+    });
+  }
+
+  openDateWishDialog(): void {
+    const dialogRef = this.dialog.open(DateWishDialogComponent, {
+      width: '600px', // A CSS solution would have been nicer.. :(
+    });
+    dialogRef.componentInstance.wishUpdate.subscribe(error => {
+      // If an error is given, adding was not successful
+      if (error) {
+        this.snackBar.open(error, 'Close', {
+          duration: 3000,
+        });
+      } else {
+        this.snackBar.open('Successfully added Request', 'Close', {
+          duration: 3000,
+        });
+        this.loadWishes();
+      }
     });
   }
 

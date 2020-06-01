@@ -68,6 +68,11 @@
   <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 15, 20]" showFirstLastButtons></mat-paginator>
 </div>
 
+<button (click)="openDateWishDialog()" mat-raised-button color="primary">
+  <mat-icon>add</mat-icon>
+  Add Date Request
+</button>
+
 <mat-divider></mat-divider>
 
 <button [routerLink]="['/']" mat-raised-button color="accent">

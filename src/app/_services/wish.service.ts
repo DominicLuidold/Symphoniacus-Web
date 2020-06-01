@@ -66,6 +66,17 @@ export class WishService {
   }
 
   /**
+   * Creates a new {@link DateWish}.
+   *
+   * @param wish The Date Wish to create
+   */
+  addDateWish(wish: DateWish): Observable<DateWish> {
+    return this.http.post<Response<DateWish>>(`${ environment.apiUrl }/datewishes`, wish).pipe(
+      map(response => response.payload)
+    );
+  }
+
+  /**
    * Deletes a {@link DutyWish} from a {@link Duty}.
    *
    * @param wish The Duty Wish to delete

@@ -1,0 +1,56 @@
+<h1 mat-dialog-title>Add a Date Request</h1>
+<mat-dialog-content>
+  <form>
+    <!-- Wish Type -->
+    <mat-form-field class="full-width">
+      <mat-label>Date Request Type</mat-label>
+      <mat-select [value]="defaultWishType" [disabled]="true">
+        <mat-option value="negative">Negative Date Request</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Start Date -->
+    <mat-form-field class="full-width">
+      <mat-label>Start Date</mat-label>
+      <input matInput [matDatepicker]="startPicker" [min]="minDate" [formControl]="startDateFormControl">
+      <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+      <mat-datepicker #startPicker></mat-datepicker>
+      <mat-error *ngIf="startDateFormControl.hasError('required')">
+        A start date is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- End Date -->
+    <mat-form-field class="full-width">
+      <mat-label>End Date</mat-label>
+      <input matInput [matDatepicker]="endPicker" [min]="minDate" [formControl]="endDateFormControl">
+      <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+      <mat-datepicker #endPicker></mat-datepicker>
+      <mat-error *ngIf="endDateFormControl.hasError('required')">
+        An end date is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Reason -->
+    <mat-form-field class="full-width">
+      <mat-label>Reason</mat-label>
+      <input matInput [formControl]="reasonFormControl" placeholder="Reason">
+      <mat-error *ngIf="reasonFormControl.hasError('required')">
+        A reason is <strong>required</strong>
+      </mat-error>
+      <mat-error *ngIf="!reasonFormControl.hasError('required') && reasonFormControl.hasError('maxlength')">
+        The reason has a maximum length of <strong>45</strong> characters
+      </mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<!-- Dialog action buttons -->
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close [mat-dialog-close]="false">Cancel</button>
+  <button
+    mat-button [mat-dialog-close]="true" (click)="createDateWish()"
+    [disabled]="!(startDateFormControl.valid && endDateFormControl.valid && reasonFormControl.valid)">
+    Submit Request
+  </button>
+</mat-dialog-actions>
