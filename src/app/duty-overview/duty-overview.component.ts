@@ -14,7 +14,7 @@ export class DutyOverviewComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  displayedColumns: string[] = ['start', 'end', 'category', 'description', 'seriesOfPerformances', 'musicalPieces', 'add'];
+  displayedColumns: string[] = ['start', 'end', 'dutyCategory', 'description', 'seriesOfPerformances', 'musicalPieces', 'add'];
   dataSource = new MatTableDataSource<Duty>();
 
   constructor(private dutyService: DutyService) {
@@ -37,6 +37,18 @@ export class DutyOverviewComponent implements OnInit {
       // Transform the filter by converting it to lowercase and removing whitespace.
       const transformedFilter = filter.trim().toLowerCase();
       return dataStr.indexOf(transformedFilter) !== -1;
+    };
+
+    // Add custom sorting for nested objects
+    this.dataSource.sortingDataAccessor = (item, property) => {
+      switch (property) {
+        case 'dutyCategory':
+          return item.dutyCategory.type;
+        case 'seriesOfPerformances':
+          return item.seriesOfPerformances.description;
+        default:
+          return item[property];
+      }
     };
   }
 

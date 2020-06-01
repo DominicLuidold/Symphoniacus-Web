@@ -2,12 +2,13 @@
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  margin-bottom: 100px;
 }
 
 .card {
   align-content: center;
   display: inline-block;
-  margin: 20px;
+  margin: 50px 20px 20px;
   width: 400px;
   text-align: center;
 }
