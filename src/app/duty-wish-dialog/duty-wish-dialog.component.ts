@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MusicalPiece, WishType } from '@app/_models';
 import { DutyWish } from '@app/_models/wish';
 import { WishService } from '@app/_services';
@@ -27,6 +28,7 @@ export class DutyWishDialogComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { dutyId: number, musicalPieces: MusicalPiece[] },
+    private snackBar: MatSnackBar,
     private wishService: WishService
   ) {
     // Intentionally empty
@@ -68,11 +70,18 @@ export class DutyWishDialogComponent implements OnInit {
       // Emit nothing if Duty Wish was added successfully
       next: () => {
         this.wishUpdate.emit();
+        this.openSnackBar('Successfully added Request', 'Close');
       },
       // Emit error message if Duty Wish could not be added
-      error: error => {
-        this.wishUpdate.emit(error);
+      error: err => {
+        this.wishUpdate.emit(err);
       }
+    });
+  }
+
+  openSnackBar(message: string, action: string): void {
+    this.snackBar.open(message, action, {
+      duration: 3000,
     });
   }
 }
