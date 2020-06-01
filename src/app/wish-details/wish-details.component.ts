@@ -51,15 +51,21 @@ export class WishDetailsComponent implements OnInit, OnDestroy {
       if (deleteWish) {
         if (wish.target === 'DATE') {
           this.wishService.deleteDateWish(wish).subscribe({
+            next: () => {
+              this.loadWishes();
+              this.openSnackBar('Successfully deleted Request', 'Close');
+            },
             error: err => this.openSnackBar(err, 'Close')
           });
         } else {
           this.wishService.deleteDutyWish(wish, this.duty.dutyId).subscribe({
+            next: () => {
+              this.loadWishes();
+              this.openSnackBar('Successfully deleted Request', 'Close');
+            },
             error: err => this.openSnackBar(err, 'Close')
           });
         }
-        // We have to wait for one second to prevent any overlapping in the backend
-        setTimeout(() => this.loadWishes(), 1000);
       }
     });
   }
