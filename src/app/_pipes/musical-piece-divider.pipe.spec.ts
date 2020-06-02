@@ -17,7 +17,8 @@ describe('MusicalPieceDividerPipe', () => {
     const musicalPieces: MusicalPiece[] = [
       {
         musicalPieceId: 1,
-        name: 'Test Musical Piece 1'
+        name: 'Test Musical Piece 1',
+        category: 'Test Category 1'
       },
     ];
 
@@ -29,11 +30,13 @@ describe('MusicalPieceDividerPipe', () => {
     const musicalPieces: MusicalPiece[] = [
       {
         musicalPieceId: 1,
-        name: 'Test Musical Piece 1'
+        name: 'Test Musical Piece 1',
+        category: 'Test Category 1'
       },
       {
         musicalPieceId: 2,
-        name: 'Test Musical Piece 2'
+        name: 'Test Musical Piece 2',
+        category: 'Test Category 2'
       }
     ];
 
