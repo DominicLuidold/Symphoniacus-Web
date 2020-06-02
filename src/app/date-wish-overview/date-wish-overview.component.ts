@@ -6,7 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { BaseWish, DateWish } from '@app/_models';
 import { WishService } from '@app/_services';
-import { DateWishDialogComponent } from '@app/date-wish-dialog/date-wish-dialog.component';
+import { AddDateWishDialogComponent } from '@app/add-date-wish-dialog/add-date-wish-dialog.component';
 import { DeleteWishDialogComponent } from '@app/delete-wish-dialog/delete-wish-dialog.component';
 import { EditDateWishDialogComponent } from '@app/edit-date-wish-dialog/edit-date-wish-dialog.component';
 
@@ -55,7 +55,7 @@ export class DateWishOverviewComponent implements OnInit {
   }
 
   addDateWishDialog(): void {
-    const dialogRef = this.dialog.open(DateWishDialogComponent, {
+    const dialogRef = this.dialog.open(AddDateWishDialogComponent, {
       width: '600px' // A CSS solution would have been nicer.. :(
     });
     dialogRef.componentInstance.wishUpdate.subscribe(error => {

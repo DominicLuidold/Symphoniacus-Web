@@ -5,10 +5,10 @@ import { WishService } from '@app/_services';
 
 @Component({
   selector: 'app-date-wish-dialog',
-  templateUrl: './date-wish-dialog.component.html',
-  styleUrls: ['./date-wish-dialog.component.scss']
+  templateUrl: './add-date-wish-dialog.component.html',
+  styleUrls: ['./add-date-wish-dialog.component.scss']
 })
-export class DateWishDialogComponent implements OnInit {
+export class AddDateWishDialogComponent implements OnInit {
   @Output() wishUpdate: EventEmitter<any> = new EventEmitter();
 
   startDateFormControl = new FormControl('', Validators.required);
