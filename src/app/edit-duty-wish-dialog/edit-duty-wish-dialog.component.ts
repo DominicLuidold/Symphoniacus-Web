@@ -17,7 +17,7 @@ export class EditDutyWishDialogComponent implements OnInit {
     Validators.required,
     Validators.maxLength(45)
   ]);
-  selectedMusicalPieces: MusicalPiece[] = this.data.dutyWish.details.musicalPieces;
+  selectedMusicalPieces: MusicalPiece[] = [...this.data.dutyWish.details.musicalPieces];
   forEntireSop = this.data.dutyWish.details.forEntireSop;
 
   constructor(
