@@ -1,6 +1,9 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { BaseWish, Duty } from '@app/_models';
 import { WishService } from '@app/_services';
 import { DeleteWishDialogComponent } from '@app/delete-wish-dialog/delete-wish-dialog.component';
@@ -15,17 +18,27 @@ import { map } from 'rxjs/operators';
 export class WishDetailsComponent implements OnInit, OnDestroy {
   @Input() duty: Duty;
   @Input() wishUpdateEvent: Observable<void>;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
   private wishUpdateSubscription: Subscription;
 
   displayedColumns: string[] = ['target-icon', 'type-target', 'status', 'reason', 'edit', 'delete'];
-  wishes: Observable<BaseWish[]>;
+  dataSource = new MatTableDataSource<BaseWish>();
 
   constructor(
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
     private wishService: WishService
   ) {
-    // Intentionally empty
+    // Add custom sorting for nested objects
+    this.dataSource.sortingDataAccessor = (item, property) => {
+      switch (property) {
+        case 'type-target':
+          return item.wishType + item.target;
+        default:
+          return item[property];
+      }
+    };
   }
 
   ngOnInit(): void {
@@ -39,10 +52,16 @@ export class WishDetailsComponent implements OnInit, OnDestroy {
 
   loadWishes() {
     // Join Observables from DutyWishes and DateWishes
-    this.wishes = forkJoin([
+    const wishList = forkJoin([
       this.wishService.getDutyWishesForDuty(this.duty.dutyId),
       this.wishService.getDateWishesForDate(this.duty.start)
     ]).pipe(map(([dutyWishes, dateWishes]) => dutyWishes.concat(dateWishes)));
+
+    wishList.subscribe(wishes => {
+      this.dataSource.data = wishes;
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
   }
 
   deleteWishDialog(wish: BaseWish): void {

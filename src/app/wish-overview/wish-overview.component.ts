@@ -20,7 +20,15 @@ export class WishOverviewComponent implements OnInit {
   dataSource = new MatTableDataSource<BaseWish>();
 
   constructor(private wishService: WishService) {
-    // Intentionally empty
+    // Add custom sorting for nested objects
+    this.dataSource.sortingDataAccessor = (item, property) => {
+      switch (property) {
+        case 'type-target':
+          return item.wishType + item.target;
+        default:
+          return item[property];
+      }
+    };
   }
 
   ngOnInit(): void {
