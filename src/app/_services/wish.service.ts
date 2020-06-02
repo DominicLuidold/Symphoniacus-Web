@@ -91,6 +91,18 @@ export class WishService {
   }
 
   /**
+   * Updates a {@link DateWish}.
+   *
+   * @param wish The Date Wish to update
+   */
+  updateDateWish(wish: DateWish): Observable<DateWish> {
+    return this.http.put<Response<DateWish>>(
+      `${ environment.apiUrl }/datewishes/${ wish.wishId }`,
+      wish
+    ).pipe(map(response => response.payload));
+  }
+
+  /**
    * Deletes a {@link DutyWish} from a {@link Duty}.
    *
    * @param wish The Duty Wish to delete
