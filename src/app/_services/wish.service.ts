@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BaseWish, DateWish, DutyWish, Response } from '@app/_models';
 import { environment } from '@environments/environment';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
@@ -42,7 +42,9 @@ export class WishService {
    * Returns all {@link DutyWish}es.
    */
   getAllDutyWishes(): Observable<BaseWish[]> {
-    return of<BaseWish[]>([]); // TODO - Wait for API implementation
+    return this.http.get<Response<DutyWish[]>>(`${ environment.apiUrl }/dutywishes`).pipe(
+      map(response => response.payload || [])
+    );
   }
 
   /**
