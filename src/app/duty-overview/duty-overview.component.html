@@ -57,8 +57,17 @@
       </td>
     </ng-container>
 
+    <!-- No Data Found -->
+    <ng-container matColumnDef="disclaimer">
+      <td mat-footer-cell *matFooterCellDef colspan="7">
+        No data found
+      </td>
+    </ng-container>
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns; let duty" [routerLink]="['/duty/' + duty.dutyId]"></tr>
+    <tr mat-footer-row *matFooterRowDef="dataSource.data.length === 0 ? ['disclaimer'] : []"
+        [hidden]="dataSource.data.length > 0" class="no-data-found"></tr>
   </table>
 
   <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 15, 20]" showFirstLastButtons></mat-paginator>
