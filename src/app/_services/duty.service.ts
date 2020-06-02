@@ -25,6 +25,6 @@ export class DutyService {
    * Returns all {@link Duty}s.
    */
   getAll(): Observable<Duty[]> {
-    return this.http.get<Response<Duty[]>>(`${ environment.apiUrl }/duties`).pipe(map(response => response.payload));
+    return this.http.get<Response<Duty[]>>(`${ environment.apiUrl }/duties`).pipe(map(response => response.payload || []));
   }
 }
