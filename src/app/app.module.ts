@@ -12,7 +12,7 @@ import { AppComponent } from '@app/app.component';
 import { DeleteWishDialogComponent } from '@app/delete-wish-dialog/delete-wish-dialog.component';
 import { DutyDetailsComponent } from '@app/duty-details/duty-details.component';
 import { DutyOverviewComponent } from '@app/duty-overview/duty-overview.component';
-import { DutyWishDialogComponent } from '@app/duty-wish-dialog/duty-wish-dialog.component';
+import { AddDutyWishDialogComponent } from '@app/add-duty-wish-dialog/add-duty-wish-dialog.component';
 import { HomeComponent } from '@app/home/home.component';
 import { LoginComponent } from '@app/login/login.component';
 import { MaterialModule } from '@app/material-module';
@@ -28,7 +28,7 @@ import { WishOverviewComponent } from './wish-overview/wish-overview.component';
   declarations: [
     AppComponent,
     DutyDetailsComponent,
-    DutyWishDialogComponent,
+    AddDutyWishDialogComponent,
     HomeComponent,
     LoginComponent,
     MusicalPieceDividerPipe,
