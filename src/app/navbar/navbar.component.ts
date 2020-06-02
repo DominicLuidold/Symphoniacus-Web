@@ -5,7 +5,7 @@ import { AuthenticationService } from '@app/_services';
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
   user: User;

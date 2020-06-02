@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
 @Component({
   selector: 'app-wish-overview',
   templateUrl: './wish-overview.component.html',
-  styleUrls: ['./wish-overview.component.css']
+  styleUrls: ['./wish-overview.component.scss']
 })
 export class WishOverviewComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -20,7 +20,15 @@ export class WishOverviewComponent implements OnInit {
   dataSource = new MatTableDataSource<BaseWish>();
 
   constructor(private wishService: WishService) {
-    // Intentionally empty
+    // Add custom sorting for nested objects
+    this.dataSource.sortingDataAccessor = (item, property) => {
+      switch (property) {
+        case 'type-target':
+          return item.wishType + item.target;
+        default:
+          return item[property];
+      }
+    };
   }
 
   ngOnInit(): void {

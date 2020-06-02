@@ -10,7 +10,7 @@ section {
   font-size: 16px;
 }
 
-/deep/ .mat-slide-toggle-bar {
+::ng-deep .mat-slide-toggle-bar {
   margin-bottom: 15px !important;
 }
 

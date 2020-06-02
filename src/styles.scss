@@ -1,14 +1,14 @@
+@import 'themes';
+
 /* Global Style */
 
-* {
-  font-family: 'Roboto', Arial, sans-serif;
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+html, body {
+  height: 100%;
 }
 
 body {
   margin: 0;
+  font-family: 'Roboto', 'Helvetica Neue', sans-serif;
 }
 
 h2 {
@@ -19,8 +19,16 @@ table {
   width: 100%;
 }
 
+.positive-wish {
+  td.mat-cell:first-child {
+    border-left: 15px solid #54ce6cde;
+  }
+}
+
 .negative-wish {
-  background-color: #ebc2c2 !important;
+  td.mat-cell:first-child {
+    border-left: 15px solid #ce5454de;
+  }
 }
 
 .full-width {

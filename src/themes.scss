@@ -1,0 +1,35 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$themes-map: (
+  indigo-pink: (
+    primary-base: $mat-indigo,
+    accent-base: $mat-pink,
+  )
+);
+
+@mixin themed-stylesheets($mat-theme) {
+  $is-dark: map-get($mat-theme, is-dark);
+
+  @if $is-dark { // Custom dark theme changes
+    .mat-paginator {
+      background: #303030;
+    }
+
+    .mat-error, .mat-form-field.mat-form-field-invalid .mat-form-field-label {
+      color: #ce5454 !important;
+    }
+  } @else { // Custom light theme changes
+    *.mat-app-background {
+      background-color: transparent;
+    }
+
+    .mat-paginator {
+      background: #fff;
+    }
+  }
+}
+
+@import '~angular-material-dynamic-themes/themes-core';
+@include make-stylesheets($themes-map);
