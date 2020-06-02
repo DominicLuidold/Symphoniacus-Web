@@ -42,11 +42,20 @@
       </td>
     </ng-container>
 
+    <!-- No Data Found -->
+    <ng-container matColumnDef="disclaimer">
+      <td mat-footer-cell *matFooterCellDef colspan="6">
+        No data found (yet). Trying to load..
+      </td>
+    </ng-container>
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    <tr mat-footer-row *matFooterRowDef="dutyDataSource.length === 0 ? ['disclaimer'] : []"
+        [hidden]="dutyDataSource.length > 0" class="no-data-found"></tr>
   </table>
 
-  <button (click)="openDutyWishDialog()" mat-raised-button color="primary">
+  <button (click)="addDutyWishDialog()" mat-raised-button color="primary">
     <mat-icon>add</mat-icon>
     Add Duty Request
   </button>

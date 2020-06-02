@@ -43,8 +43,8 @@
     <!-- Edit -->
     <ng-container matColumnDef="edit">
       <th mat-header-cell *matHeaderCellDef>Edit</th>
-      <td mat-cell *matCellDef>
-        <button mat-icon-button>
+      <td mat-cell *matCellDef="let wish">
+        <button (click)="editDateWishDialog(wish)" mat-icon-button>
           <mat-icon>edit</mat-icon>
         </button>
       </td>
@@ -60,16 +60,25 @@
       </td>
     </ng-container>
 
+    <!-- No Data Found -->
+    <ng-container matColumnDef="disclaimer">
+      <td mat-footer-cell *matFooterCellDef colspan="8">
+        No data found (yet). Trying to load..
+      </td>
+    </ng-container>
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns; let wish"
         [class.positive-wish]="wish.wishType == 'POSITIVE'"
         [class.negative-wish]="wish.wishType == 'NEGATIVE'"></tr>
+    <tr mat-footer-row *matFooterRowDef="dataSource.data.length === 0 ? ['disclaimer'] : []"
+        [hidden]="dataSource.data.length > 0" class="no-data-found"></tr>
   </table>
 
   <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 15, 20]" showFirstLastButtons></mat-paginator>
 </div>
 
-<button (click)="openDateWishDialog()" mat-raised-button color="primary">
+<button (click)="addDateWishDialog()" mat-raised-button color="primary">
   <mat-icon>add</mat-icon>
   Add Date Request
 </button>

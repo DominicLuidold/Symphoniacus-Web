@@ -20,6 +20,8 @@ import { NavbarComponent } from '@app/navbar/navbar.component';
 import { WishDetailsComponent } from '@app/wish-details/wish-details.component';
 import { DateWishDialogComponent } from './date-wish-dialog/date-wish-dialog.component';
 import { DateWishOverviewComponent } from './date-wish-overview/date-wish-overview.component';
+import { EditDateWishDialogComponent } from './edit-date-wish-dialog/edit-date-wish-dialog.component';
+import { EditDutyWishDialogComponent } from './edit-duty-wish-dialog/edit-duty-wish-dialog.component';
 import { WishOverviewComponent } from './wish-overview/wish-overview.component';
 
 @NgModule({
@@ -37,6 +39,8 @@ import { WishOverviewComponent } from './wish-overview/wish-overview.component';
     WishOverviewComponent,
     DateWishOverviewComponent,
     DateWishDialogComponent,
+    EditDutyWishDialogComponent,
+    EditDateWishDialogComponent,
   ],
   imports: [
     AppRoutingModule,

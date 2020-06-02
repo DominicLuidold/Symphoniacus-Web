@@ -1,47 +1,40 @@
 import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { MusicalPiece, WishType } from '@app/_models';
-import { DutyWish } from '@app/_models/wish';
+import { DutyWish, MusicalPiece } from '@app/_models';
 import { WishService } from '@app/_services';
 
 @Component({
-  selector: 'app-duty-wish-dialog',
-  templateUrl: './duty-wish-dialog.component.html',
-  styleUrls: ['./duty-wish-dialog.component.scss']
+  selector: 'app-edit-duty-wish-dialog',
+  templateUrl: './edit-duty-wish-dialog.component.html',
+  styleUrls: ['./edit-duty-wish-dialog.component.scss']
 })
-export class DutyWishDialogComponent implements OnInit {
+export class EditDutyWishDialogComponent implements OnInit {
   @Output() wishUpdate: EventEmitter<any> = new EventEmitter();
-  wishTypes: WishType[] = [
-    { value: 'POSITIVE', viewValue: 'Positive Duty Request' },
-    { value: 'NEGATIVE', viewValue: 'Negative Duty Request' }
-  ];
-  wishTypeFormControl = new FormControl('', Validators.required);
+
+  selectedWishType = this.data.dutyWish.wishType;
   reasonFormControl = new FormControl('', [
     Validators.required,
     Validators.maxLength(45)
   ]);
-
-  selectedMusicalPieces: MusicalPiece[] = [];
-  forEntireSop = false;
+  selectedMusicalPieces: MusicalPiece[] = this.data.dutyWish.details.musicalPieces;
+  forEntireSop = this.data.dutyWish.details.forEntireSop;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: { dutyId: number, musicalPieces: MusicalPiece[] },
-    private snackBar: MatSnackBar,
+    @Inject(MAT_DIALOG_DATA) public data: { dutyWish: DutyWish },
     private wishService: WishService
   ) {
     // Intentionally empty
   }
 
   ngOnInit(): void {
-    // Intentionally empty
+    this.reasonFormControl.setValue(this.data.dutyWish.reason);
   }
 
   onToggle(): void {
     this.forEntireSop = !this.forEntireSop;
     if (this.forEntireSop) {
-      this.selectedMusicalPieces = this.data.musicalPieces;
+      this.selectedMusicalPieces = this.data.dutyWish.details.musicalPieces;
     } else {
       this.selectedMusicalPieces = [];
     }
@@ -55,21 +48,22 @@ export class DutyWishDialogComponent implements OnInit {
     }
   }
 
-  createDutyWish(): void {
+  updateDutyWish(): void {
     const dutyWish: DutyWish = {
-      wishType: this.wishTypeFormControl.value,
+      wishId: this.data.dutyWish.wishId,
+      wishType: this.data.dutyWish.wishType,
       target: 'DUTY',
       reason: this.reasonFormControl.value,
       details: {
-        dutyId: this.data.dutyId,
+        dutyId: this.data.dutyWish.details.dutyId,
         musicalPieces: this.selectedMusicalPieces,
         forEntireSop: this.forEntireSop
       }
     };
-    this.wishService.addDutyWish(dutyWish).subscribe({
-      // Emit nothing if Duty Wish was added successfully
+    this.wishService.updateDutyWish(dutyWish).subscribe({
+      // Emit nothing if Duty Wish was updated successfully
       next: () => this.wishUpdate.emit(),
-      // Emit error message if Duty Wish could not be added
+      // Emit error message if Duty Wish could not be updated
       error: err => this.wishUpdate.emit(err)
     });
   }

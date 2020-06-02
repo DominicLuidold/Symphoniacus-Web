@@ -79,6 +79,30 @@ export class WishService {
   }
 
   /**
+   * Updates a {@link DutyWish} from a {@link Duty}.
+   *
+   * @param wish The Duty Wish to update
+   */
+  updateDutyWish(wish: DutyWish): Observable<DutyWish> {
+    return this.http.put<Response<DutyWish>>(
+      `${ environment.apiUrl }/duties/${ wish.details.dutyId }/wishes/${ wish.wishId }`,
+      wish
+    ).pipe(map(response => response.payload));
+  }
+
+  /**
+   * Updates a {@link DateWish}.
+   *
+   * @param wish The Date Wish to update
+   */
+  updateDateWish(wish: DateWish): Observable<DateWish> {
+    return this.http.put<Response<DateWish>>(
+      `${ environment.apiUrl }/datewishes/${ wish.wishId }`,
+      wish
+    ).pipe(map(response => response.payload));
+  }
+
+  /**
    * Deletes a {@link DutyWish} from a {@link Duty}.
    *
    * @param wish The Duty Wish to delete
