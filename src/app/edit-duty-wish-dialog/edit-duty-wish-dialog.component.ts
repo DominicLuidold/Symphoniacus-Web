@@ -7,7 +7,7 @@ import { WishService } from '@app/_services';
 @Component({
   selector: 'app-edit-duty-wish-dialog',
   templateUrl: './edit-duty-wish-dialog.component.html',
-  styleUrls: ['./edit-duty-wish-dialog.component.scss']
+  styleUrls: ['../add-duty-wish-dialog/add-duty-wish-dialog.component.scss']
 })
 export class EditDutyWishDialogComponent implements OnInit {
   @Output() wishUpdate: EventEmitter<any> = new EventEmitter();
