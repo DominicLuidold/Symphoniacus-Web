@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
-import { FormControl, Validators } from "@angular/forms";
-import { MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { DutyWish, MusicalPiece } from "@app/_models";
-import { WishService } from "@app/_services";
+import { FormControl, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DutyWish, MusicalPiece } from '@app/_models';
+import { WishService } from '@app/_services';
 
 @Component({
   selector: 'app-edit-duty-wish-dialog',
@@ -12,13 +12,13 @@ import { WishService } from "@app/_services";
 export class EditDutyWishDialogComponent implements OnInit {
   @Output() wishUpdate: EventEmitter<any> = new EventEmitter();
 
+  selectedWishType = this.data.dutyWish.wishType;
   reasonFormControl = new FormControl('', [
     Validators.required,
     Validators.maxLength(45)
   ]);
-  wishType = this.data.dutyWish.wishType + ' ' + this.data.dutyWish.target;
-  selectedMusicalPieces: MusicalPiece[] = [];
-  forEntireSop = false;
+  selectedMusicalPieces: MusicalPiece[] = this.data.dutyWish.details.musicalPieces;
+  forEntireSop = this.data.dutyWish.details.forEntireSop;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { dutyWish: DutyWish },
@@ -28,7 +28,7 @@ export class EditDutyWishDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Intentionally empty
+    this.reasonFormControl.setValue(this.data.dutyWish.reason);
   }
 
   onToggle(): void {
@@ -50,8 +50,9 @@ export class EditDutyWishDialogComponent implements OnInit {
 
   updateDutyWish(): void {
     const dutyWish: DutyWish = {
+      wishId: this.data.dutyWish.wishId,
       wishType: this.data.dutyWish.wishType,
-      target: this.data.dutyWish.target,
+      target: 'DUTY',
       reason: this.reasonFormControl.value,
       details: {
         dutyId: this.data.dutyWish.details.dutyId,
@@ -59,7 +60,7 @@ export class EditDutyWishDialogComponent implements OnInit {
         forEntireSop: this.forEntireSop
       }
     };
-    this.wishService.addDutyWish(dutyWish).subscribe({
+    this.wishService.updateDutyWish(dutyWish).subscribe({
       // Emit nothing if Duty Wish was updated successfully
       next: () => this.wishUpdate.emit(),
       // Emit error message if Duty Wish could not be updated

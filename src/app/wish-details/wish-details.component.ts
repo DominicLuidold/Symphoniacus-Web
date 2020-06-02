@@ -7,7 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { BaseWish, Duty } from '@app/_models';
 import { WishService } from '@app/_services';
 import { DeleteWishDialogComponent } from '@app/delete-wish-dialog/delete-wish-dialog.component';
-import { EditDutyWishDialogComponent } from "@app/edit-duty-wish-dialog/edit-duty-wish-dialog.component";
+import { EditDutyWishDialogComponent } from '@app/edit-duty-wish-dialog/edit-duty-wish-dialog.component';
 import { forkJoin, Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -84,10 +84,10 @@ export class WishDetailsComponent implements OnInit, OnDestroy {
       if (error) {
         this.openSnackBar(error);
       } else {
-        this.loadWishes();
         this.openSnackBar('Successfully edited Request');
+        this.loadWishes();
       }
-    })
+    });
   }
 
   deleteWishDialog(wish: BaseWish): void {
