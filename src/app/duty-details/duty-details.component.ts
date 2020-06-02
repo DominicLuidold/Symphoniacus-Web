@@ -37,7 +37,7 @@ export class DutyDetailsComponent implements OnInit {
     });
   }
 
-  openDutyWishDialog(): void {
+  addDutyWishDialog(): void {
     const dialogRef = this.dialog.open(DutyWishDialogComponent, {
       width: '600px', // A CSS solution would have been nicer.. :(
       data: {
@@ -48,12 +48,17 @@ export class DutyDetailsComponent implements OnInit {
     dialogRef.componentInstance.wishUpdate.subscribe(error => {
       // If an error is given, adding was not successful
       if (error) {
-        this.snackBar.open(error, 'Close', {
-          duration: 3000,
-        });
+        this.openSnackBar(error);
       } else {
         this.wishUpdateSubject.next();
+        this.openSnackBar('Successfully added Request');
       }
+    });
+  }
+
+  openSnackBar(message: string, action: string = 'Close'): void {
+    this.snackBar.open(message, action, {
+      duration: 3000,
     });
   }
 }

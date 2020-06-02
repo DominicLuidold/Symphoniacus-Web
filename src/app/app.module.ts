@@ -21,6 +21,7 @@ import { WishDetailsComponent } from '@app/wish-details/wish-details.component';
 import { DateWishDialogComponent } from './date-wish-dialog/date-wish-dialog.component';
 import { DateWishOverviewComponent } from './date-wish-overview/date-wish-overview.component';
 import { WishOverviewComponent } from './wish-overview/wish-overview.component';
+import { EditDutyWishDialogComponent } from './edit-duty-wish-dialog/edit-duty-wish-dialog.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { WishOverviewComponent } from './wish-overview/wish-overview.component';
     WishOverviewComponent,
     DateWishOverviewComponent,
     DateWishDialogComponent,
+    EditDutyWishDialogComponent,
   ],
   imports: [
     AppRoutingModule,

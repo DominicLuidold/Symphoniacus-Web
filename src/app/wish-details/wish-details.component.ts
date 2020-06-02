@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { BaseWish, Duty } from '@app/_models';
 import { WishService } from '@app/_services';
 import { DeleteWishDialogComponent } from '@app/delete-wish-dialog/delete-wish-dialog.component';
+import { EditDutyWishDialogComponent } from "@app/edit-duty-wish-dialog/edit-duty-wish-dialog.component";
 import { forkJoin, Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -64,6 +65,31 @@ export class WishDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
+  editWish(wish: BaseWish) {
+    if (wish.target === 'DATE') {
+      // TODO
+    } else {
+      this.editDutyWishDialog(wish);
+    }
+  }
+
+  editDutyWishDialog(dutyWish: BaseWish): void {
+    const dialogRef = this.dialog.open(EditDutyWishDialogComponent, {
+      width: '600px', // A CSS solution would have been nicer here.. :(
+      data: {
+        dutyWish
+      }
+    });
+    dialogRef.componentInstance.wishUpdate.subscribe(error => {
+      if (error) {
+        this.openSnackBar(error);
+      } else {
+        this.loadWishes();
+        this.openSnackBar('Successfully edited Request');
+      }
+    })
+  }
+
   deleteWishDialog(wish: BaseWish): void {
     const dialogRef = this.dialog.open(DeleteWishDialogComponent);
     dialogRef.afterClosed().subscribe(deleteWish => {
@@ -72,24 +98,24 @@ export class WishDetailsComponent implements OnInit, OnDestroy {
           this.wishService.deleteDateWish(wish).subscribe({
             next: () => {
               this.loadWishes();
-              this.openSnackBar('Successfully deleted Request', 'Close');
+              this.openSnackBar('Successfully deleted Request');
             },
-            error: err => this.openSnackBar(err, 'Close')
+            error: err => this.openSnackBar(err)
           });
         } else {
           this.wishService.deleteDutyWish(wish, this.duty.dutyId).subscribe({
             next: () => {
               this.loadWishes();
-              this.openSnackBar('Successfully deleted Request', 'Close');
+              this.openSnackBar('Successfully deleted Request');
             },
-            error: err => this.openSnackBar(err, 'Close')
+            error: err => this.openSnackBar(err)
           });
         }
       }
     });
   }
 
-  openSnackBar(message: string, action: string): void {
+  openSnackBar(message: string, action: string = 'Close'): void {
     this.snackBar.open(message, action, {
       duration: 3000,
     });

@@ -68,20 +68,9 @@ export class DutyWishDialogComponent implements OnInit {
     };
     this.wishService.addDutyWish(dutyWish).subscribe({
       // Emit nothing if Duty Wish was added successfully
-      next: () => {
-        this.wishUpdate.emit();
-        this.openSnackBar('Successfully added Request', 'Close');
-      },
+      next: () => this.wishUpdate.emit(),
       // Emit error message if Duty Wish could not be added
-      error: err => {
-        this.wishUpdate.emit(err);
-      }
-    });
-  }
-
-  openSnackBar(message: string, action: string): void {
-    this.snackBar.open(message, action, {
-      duration: 3000,
+      error: err => this.wishUpdate.emit(err)
     });
   }
 }

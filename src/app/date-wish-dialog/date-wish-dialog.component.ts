@@ -40,11 +40,10 @@ export class DateWishDialogComponent implements OnInit {
         end: this.endDateFormControl.value
       }
     };
-    console.log(JSON.stringify(dateWish));
     this.wishService.addDateWish(dateWish).subscribe({
       // Emit nothing if Date Wish was added successfully
       next: () => this.wishUpdate.emit(),
-      // Emit error message if Duty Wish could not be added
+      // Emit error message if Date Wish could not be added
       error: err => this.wishUpdate.emit(err)
     });
   }
