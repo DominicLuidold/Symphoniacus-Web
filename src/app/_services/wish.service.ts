@@ -19,7 +19,7 @@ export class WishService {
    */
   getDutyWishesForDuty(dutyId: number): Observable<BaseWish[]> {
     return this.http.get<Response<DutyWish[]>>(`${ environment.apiUrl }/duties/${ dutyId }/wishes`).pipe(
-      map(response => response.payload)
+      map(response => response.payload || [])
     );
   }
 
@@ -33,7 +33,7 @@ export class WishService {
       map(response => response.payload.filter(
         dateWish => {
           return (Date.parse(date) >= Date.parse(dateWish.details.start) && Date.parse(date) <= Date.parse(dateWish.details.end));
-        })
+        }) || []
       )
     );
   }
@@ -50,7 +50,7 @@ export class WishService {
    */
   getAllDateWishes(): Observable<DateWish[]> {
     return this.http.get<Response<DateWish[]>>(`${ environment.apiUrl }/datewishes`).pipe(
-      map(response => response.payload)
+      map(response => response.payload || [])
     );
   }
 
