@@ -66,6 +66,18 @@ export class WishDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
+  isNotEditable(wish): boolean {
+    if (wish.target === 'DUTY') {
+      return false;
+    }
+
+    const wishStart = new Date(wish.details.start);
+    const wishEnd = new Date(wish.details.end);
+    const today = new Date();
+
+    return (wishStart <= today && wishEnd >= today) || (wishEnd <= today);
+  }
+
   editWish(wish: BaseWish) {
     if (wish.target === 'DATE') {
       this.editDateWishDialog(wish);

@@ -4,7 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { BaseWish, DateWish } from '@app/_models';
+import { DateWish } from '@app/_models';
 import { WishService } from '@app/_services';
 import { AddDateWishDialogComponent } from '@app/add-date-wish-dialog/add-date-wish-dialog.component';
 import { DeleteWishDialogComponent } from '@app/delete-wish-dialog/delete-wish-dialog.component';
@@ -54,6 +54,14 @@ export class DateWishOverviewComponent implements OnInit {
     });
   }
 
+  isNotEditable(wish: DateWish): boolean {
+    const wishStart = new Date(wish.details.start);
+    const wishEnd = new Date(wish.details.end);
+    const today = new Date();
+
+    return (wishStart <= today && wishEnd >= today) || (wishEnd <= today);
+  }
+
   addDateWishDialog(): void {
     const dialogRef = this.dialog.open(AddDateWishDialogComponent, {
       width: '600px' // A CSS solution would have been nicer.. :(
@@ -69,7 +77,7 @@ export class DateWishOverviewComponent implements OnInit {
     });
   }
 
-  editDateWishDialog(dateWish: BaseWish): void {
+  editDateWishDialog(dateWish: DateWish): void {
     const dialogRef = this.dialog.open(EditDateWishDialogComponent, {
       width: '600px',
       data: {
@@ -86,7 +94,7 @@ export class DateWishOverviewComponent implements OnInit {
     });
   }
 
-  deleteWishDialog(wish: BaseWish): void {
+  deleteWishDialog(wish: DateWish): void {
     const dialogRef = this.dialog.open(DeleteWishDialogComponent);
     dialogRef.afterClosed().subscribe(deleteWish => {
       if (deleteWish) {

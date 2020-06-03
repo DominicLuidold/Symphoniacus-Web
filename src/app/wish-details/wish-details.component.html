@@ -14,7 +14,11 @@
     <!-- Type & Target -->
     <ng-container matColumnDef="type-target">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Request Type</th>
-      <td mat-cell *matCellDef="let wish">{{ (wish.wishType + ' ' + wish.target | titlecase) || '/' }}</td>
+      <td mat-cell *matCellDef="let wish"
+          matTooltip="{{ wish.details.start | date:'dd.MM.yyyy' }} - {{ wish.details.end | date:'dd.MM.yyyy' }}"
+          [matTooltipDisabled]="wish.target === 'DUTY'">
+        {{ (wish.wishType + ' ' + wish.target | titlecase) || '/' }}
+      </td>
     </ng-container>
 
     <!-- Status -->
@@ -33,9 +37,11 @@
     <ng-container matColumnDef="edit">
       <th mat-header-cell *matHeaderCellDef>Edit</th>
       <td mat-cell *matCellDef="let wish">
-        <button (click)="editWish(wish)" mat-icon-button>
-          <mat-icon>edit</mat-icon>
-        </button>
+        <div matTooltip="Only upcoming Requests can be edited" [matTooltipDisabled]="!isNotEditable(wish)">
+          <button (click)="editWish(wish)" [disabled]="isNotEditable(wish)" mat-icon-button>
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
       </td>
     </ng-container>
 
@@ -43,9 +49,11 @@
     <ng-container matColumnDef="delete">
       <th mat-header-cell *matHeaderCellDef>Delete</th>
       <td mat-cell *matCellDef="let wish">
-        <button (click)="deleteWishDialog(wish)" mat-icon-button>
-          <mat-icon>delete_forever</mat-icon>
-        </button>
+        <div matTooltip="Only upcoming Requests can be deleted" [matTooltipDisabled]="!isNotEditable(wish)">
+          <button (click)="deleteWishDialog(wish)" [disabled]="isNotEditable(wish)" mat-icon-button>
+            <mat-icon>delete_forever</mat-icon>
+          </button>
+        </div>
       </td>
     </ng-container>
 
