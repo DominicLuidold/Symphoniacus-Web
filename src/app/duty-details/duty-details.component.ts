@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Duty } from '@app/_models';
 import { DutyService } from '@app/_services';
-import { DutyWishDialogComponent } from '@app/duty-wish-dialog/duty-wish-dialog.component';
+import { AddDutyWishDialogComponent } from '@app/add-duty-wish-dialog/add-duty-wish-dialog.component';
 import { Subject } from 'rxjs';
 import { first } from 'rxjs/operators';
 
@@ -38,7 +38,7 @@ export class DutyDetailsComponent implements OnInit {
   }
 
   addDutyWishDialog(): void {
-    const dialogRef = this.dialog.open(DutyWishDialogComponent, {
+    const dialogRef = this.dialog.open(AddDutyWishDialogComponent, {
       width: '600px', // A CSS solution would have been nicer.. :(
       data: {
         dutyId: this.duty.dutyId,

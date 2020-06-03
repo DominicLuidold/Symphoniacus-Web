@@ -15,6 +15,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   exports: [
@@ -34,6 +35,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatSortModule,
     MatTableModule,
     MatToolbarModule,
+    MatTooltipModule,
   ]
 })
 export class MaterialModule {

@@ -7,7 +7,7 @@ import { WishService } from '@app/_services';
 @Component({
   selector: 'app-edit-date-wish-dialog',
   templateUrl: './edit-date-wish-dialog.component.html',
-  styleUrls: ['./edit-date-wish-dialog.component.scss']
+  styleUrls: ['../add-date-wish-dialog/add-date-wish-dialog.component.scss']
 })
 export class EditDateWishDialogComponent implements OnInit {
   @Output() wishUpdate: EventEmitter<any> = new EventEmitter();

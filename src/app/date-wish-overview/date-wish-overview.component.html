@@ -44,9 +44,11 @@
     <ng-container matColumnDef="edit">
       <th mat-header-cell *matHeaderCellDef>Edit</th>
       <td mat-cell *matCellDef="let wish">
-        <button (click)="editDateWishDialog(wish)" mat-icon-button>
-          <mat-icon>edit</mat-icon>
-        </button>
+        <div matTooltip="Only upcoming Requests can be edited" [matTooltipDisabled]="!isNotEditable(wish)">
+          <button (click)="editDateWishDialog(wish)" [disabled]="isNotEditable(wish)" mat-icon-button>
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
       </td>
     </ng-container>
 
@@ -54,9 +56,11 @@
     <ng-container matColumnDef="delete">
       <th mat-header-cell *matHeaderCellDef>Delete</th>
       <td mat-cell *matCellDef="let wish">
-        <button (click)="deleteWishDialog(wish)" mat-icon-button>
-          <mat-icon>delete_forever</mat-icon>
-        </button>
+        <div matTooltip="Only upcoming Requests can be deleted" [matTooltipDisabled]="!isNotEditable(wish)">
+          <button (click)="deleteWishDialog(wish)" [disabled]="isNotEditable(wish)" mat-icon-button>
+            <mat-icon>delete_forever</mat-icon>
+          </button>
+        </div>
       </td>
     </ng-container>
 

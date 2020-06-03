@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { BaseWish, Duty } from '@app/_models';
 import { WishService } from '@app/_services';
 import { DeleteWishDialogComponent } from '@app/delete-wish-dialog/delete-wish-dialog.component';
+import { EditDateWishDialogComponent } from '@app/edit-date-wish-dialog/edit-date-wish-dialog.component';
 import { EditDutyWishDialogComponent } from '@app/edit-duty-wish-dialog/edit-duty-wish-dialog.component';
 import { forkJoin, Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -65,12 +66,41 @@ export class WishDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
+  isNotEditable(wish): boolean {
+    if (wish.target === 'DUTY') {
+      return false;
+    }
+
+    const wishStart = new Date(wish.details.start);
+    const wishEnd = new Date(wish.details.end);
+    const today = new Date();
+
+    return (wishStart <= today && wishEnd >= today) || (wishEnd <= today);
+  }
+
   editWish(wish: BaseWish) {
     if (wish.target === 'DATE') {
-      // TODO
+      this.editDateWishDialog(wish);
     } else {
       this.editDutyWishDialog(wish);
     }
+  }
+
+  editDateWishDialog(dateWish: BaseWish): void {
+    const dialogRef = this.dialog.open(EditDateWishDialogComponent, {
+      width: '600px',
+      data: {
+        dateWish
+      }
+    });
+    dialogRef.componentInstance.wishUpdate.subscribe(error => {
+      if (error) {
+        this.openSnackBar(error);
+      } else {
+        this.openSnackBar('Successfully edited Request');
+        this.loadWishes();
+      }
+    });
   }
 
   editDutyWishDialog(dutyWish: BaseWish): void {
