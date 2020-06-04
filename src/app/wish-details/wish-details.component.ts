@@ -37,6 +37,10 @@ export class WishDetailsComponent implements OnInit, OnDestroy {
       switch (property) {
         case 'type-target':
           return item.wishType + item.target;
+        case 'start':
+          return item.details.start;
+        case 'end':
+          return item.details.end;
         default:
           return item[property];
       }

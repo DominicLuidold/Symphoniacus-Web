@@ -25,6 +25,10 @@ export class WishOverviewComponent implements OnInit {
       switch (property) {
         case 'type-target':
           return item.wishType + item.target;
+        case 'start':
+          return item.details.start;
+        case 'end':
+          return item.details.end;
         default:
           return item[property];
       }

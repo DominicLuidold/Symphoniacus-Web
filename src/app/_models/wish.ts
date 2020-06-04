@@ -5,6 +5,13 @@ export interface BaseWish {
   wishType: 'POSITIVE' | 'NEGATIVE';
   target: 'DATE' | 'DUTY';
   reason: string;
+  details: {
+    start?: string;
+    end?: string;
+    dutyId?: number;
+    musicalPieces?: MusicalPiece[];
+    forEntireSop?: boolean;
+  };
 }
 
 export interface DateWish extends BaseWish {
