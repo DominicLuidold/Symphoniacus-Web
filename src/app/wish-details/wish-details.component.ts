@@ -24,7 +24,7 @@ export class WishDetailsComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort) sort: MatSort;
   private wishUpdateSubscription: Subscription;
 
-  displayedColumns: string[] = ['target-icon', 'type-target', 'reason', 'edit', 'delete'];
+  displayedColumns: string[] = ['target-icon', 'type-target', 'start', 'end', 'reason', 'edit', 'delete'];
   dataSource = new MatTableDataSource<BaseWish>();
 
   constructor(
