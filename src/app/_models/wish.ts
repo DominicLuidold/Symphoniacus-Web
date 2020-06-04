@@ -6,6 +6,13 @@ export interface BaseWish {
   target: 'DATE' | 'DUTY';
   status?: 'APPROVED' | 'REVIEW' | 'REJECTED';
   reason: string;
+  details: {
+    start?: string;
+    end?: string;
+    dutyId?: number;
+    musicalPieces?: MusicalPiece[];
+    forEntireSop?: boolean;
+  };
 }
 
 export interface DateWish extends BaseWish {
