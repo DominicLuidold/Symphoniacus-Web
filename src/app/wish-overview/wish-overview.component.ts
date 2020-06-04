@@ -16,7 +16,7 @@ export class WishOverviewComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  displayedColumns: string[] = ['target-icon', 'type-target', 'status', 'reason', 'info'];
+  displayedColumns: string[] = ['target-icon', 'type-target', 'reason', 'info'];
   dataSource = new MatTableDataSource<BaseWish>();
 
   constructor(private wishService: WishService) {
