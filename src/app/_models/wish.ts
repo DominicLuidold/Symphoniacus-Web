@@ -4,7 +4,6 @@ export interface BaseWish {
   wishId?: number;
   wishType: 'POSITIVE' | 'NEGATIVE';
   target: 'DATE' | 'DUTY';
-  status?: 'APPROVED' | 'REVIEW' | 'REJECTED';
   reason: string;
 }
 

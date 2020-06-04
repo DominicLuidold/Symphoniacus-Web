@@ -19,7 +19,7 @@ export class DateWishOverviewComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  displayedColumns: string[] = ['target-icon', 'type-target', 'start', 'end', 'status', 'reason', 'edit', 'delete'];
+  displayedColumns: string[] = ['target-icon', 'type-target', 'start', 'end', 'reason', 'edit', 'delete'];
   dataSource = new MatTableDataSource<DateWish>();
 
   constructor(

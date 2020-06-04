@@ -17,10 +17,20 @@
       <td mat-cell *matCellDef="let wish">{{ (wish.wishType + ' ' + wish.target | titlecase) || '/' }}</td>
     </ng-container>
 
-    <!-- Status -->
-    <ng-container matColumnDef="status">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
-      <td mat-cell *matCellDef="let wish">{{ (wish.status | titlecase) || '/' }}</td>
+    <!-- Start date -->
+    <ng-container matColumnDef="start">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Start Date</th>
+      <td mat-cell *matCellDef="let wish" [class.italic]="wish.target === 'DUTY'">
+        {{ (wish.details.start | date:'dd.MM.yyyy') || 'Not Applicable' }}
+      </td>
+    </ng-container>
+
+    <!-- End date -->
+    <ng-container matColumnDef="end">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>End Date</th>
+      <td mat-cell *matCellDef="let wish" [class.italic]="wish.target === 'DUTY'">
+        {{ (wish.details.end | date:'dd.MM.yyyy') || 'Not Applicable' }}
+      </td>
     </ng-container>
 
     <!-- Reason -->
@@ -38,7 +48,7 @@
           <mat-icon>info</mat-icon>
         </button>
 
-        <!-- Date Wish button | TODO -->
+        <!-- Date Wish button -->
         <button *ngIf="!isDutyWish(wish)" [routerLink]="['/date-request-overview']" mat-icon-button>
           <mat-icon>info</mat-icon>
         </button>
@@ -47,7 +57,7 @@
 
     <!-- No Data Found -->
     <ng-container matColumnDef="disclaimer">
-      <td mat-footer-cell *matFooterCellDef colspan="5">
+      <td mat-footer-cell *matFooterCellDef colspan="6">
         No data found (yet). Trying to load..
       </td>
     </ng-container>
