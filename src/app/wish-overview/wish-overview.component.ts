@@ -19,6 +19,10 @@ export class WishOverviewComponent implements OnInit {
   dataSource = new MatTableDataSource<BaseWish>();
 
   constructor(private wishService: WishService) {
+    // Intentionally empty
+  }
+
+  ngOnInit(): void {
     // Add custom sorting for nested objects
     this.dataSource.sortingDataAccessor = (item, property) => {
       switch (property) {
@@ -32,12 +36,6 @@ export class WishOverviewComponent implements OnInit {
           return item[property];
       }
     };
-  }
-
-  ngOnInit(): void {
-    // Add pagination and sorting
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
 
     // Load wishes
     this.loadWishes();
@@ -54,6 +52,10 @@ export class WishOverviewComponent implements OnInit {
       ...await this.wishService.getAllDateWishes().toPromise()
     );
     this.table.renderRows();
+
+    // Add pagination and sorting
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   isDutyWish(wish): boolean {
