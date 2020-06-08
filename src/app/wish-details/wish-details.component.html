@@ -1,7 +1,7 @@
 <h2>Your existing Requests for this Duty</h2>
 
 <div *ngIf="dataSource">
-  <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z4">
+  <table mat-table matSort #wishDetails [dataSource]="dataSource" class="mat-elevation-z4">
     <!-- Target Icon -->
     <ng-container matColumnDef="target-icon">
       <th mat-header-cell *matHeaderCellDef>#</th>

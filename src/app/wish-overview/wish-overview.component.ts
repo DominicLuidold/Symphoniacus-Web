@@ -1,11 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { BaseWish } from '@app/_models';
 import { WishService } from '@app/_services';
-import { forkJoin } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-wish-overview',
@@ -13,6 +11,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./wish-overview.component.scss']
 })
 export class WishOverviewComponent implements OnInit {
+  @ViewChild('wishOverview') table: MatTable<BaseWish>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -36,17 +35,25 @@ export class WishOverviewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Join Observables from DutyWishes and DateWishes
-    const wishList = forkJoin([
-      this.wishService.getAllDutyWishes(),
-      this.wishService.getAllDateWishes()
-    ]).pipe(map(([dutyWishes, dateWishes]) => dutyWishes.concat(dateWishes)));
+    // Add pagination and sorting
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
 
-    wishList.subscribe(wishes => {
-      this.dataSource.data = wishes;
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    });
+    // Load wishes
+    this.loadWishes();
+  }
+
+  async loadWishes() {
+    // Clear previous data, if any
+    this.dataSource.data = [];
+
+    // Load Date and Duty Wishes asynchronously but wait with the second call for the first one to be finished.
+    // This is necessary because of our Hibernate not being able to handle two requests at the same time.. :(
+    this.dataSource.data.push(
+      ...await this.wishService.getAllDutyWishes().toPromise(),
+      ...await this.wishService.getAllDateWishes().toPromise()
+    );
+    this.table.renderRows();
   }
 
   isDutyWish(wish): boolean {

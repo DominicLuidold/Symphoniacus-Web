@@ -1,7 +1,7 @@
 <h2>Your existing Requests</h2>
 
 <div *ngIf="dataSource">
-  <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
+  <table mat-table matSort #wishOverview [dataSource]="dataSource" class="mat-elevation-z8">
     <!-- Target Icon -->
     <ng-container matColumnDef="target-icon">
       <th mat-header-cell *matHeaderCellDef>#</th>
