@@ -41,7 +41,7 @@ export class WishService {
   /**
    * Returns all {@link DutyWish}es.
    */
-  getAllDutyWishes(): Observable<BaseWish[]> {
+  getAllDutyWishes(): Observable<DutyWish[]> {
     return this.http.get<Response<DutyWish[]>>(`${ environment.apiUrl }/dutywishes`).pipe(
       map(response => response.payload || [])
     );
