@@ -32,6 +32,10 @@ export class WishDetailsComponent implements OnInit, OnDestroy {
     private snackBar: MatSnackBar,
     private wishService: WishService
   ) {
+    // Intentionally empty
+  }
+
+  ngOnInit(): void {
     // Add custom sorting for nested objects
     this.dataSource.sortingDataAccessor = (item, property) => {
       switch (property) {
@@ -45,12 +49,6 @@ export class WishDetailsComponent implements OnInit, OnDestroy {
           return item[property];
       }
     };
-  }
-
-  ngOnInit(): void {
-    // Add pagination and sorting
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
 
     // Load wishes
     this.loadWishes();
@@ -72,6 +70,10 @@ export class WishDetailsComponent implements OnInit, OnDestroy {
       ...await this.wishService.getAllDateWishes().toPromise()
     );
     this.table.renderRows();
+
+    // Add pagination and sorting
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   isNotEditable(wish): boolean {
