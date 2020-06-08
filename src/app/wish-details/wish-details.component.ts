@@ -66,8 +66,8 @@ export class WishDetailsComponent implements OnInit, OnDestroy {
     // Load Date and Duty Wishes asynchronously but wait with the second call for the first one to be finished.
     // This is necessary because of our Hibernate not being able to handle two requests at the same time.. :(
     this.dataSource.data.push(
-      ...await this.wishService.getAllDutyWishes().toPromise(),
-      ...await this.wishService.getAllDateWishes().toPromise()
+      ...await this.wishService.getDutyWishesForDuty(this.duty.dutyId).toPromise(),
+      ...await this.wishService.getDateWishesForDate(this.duty.start).toPromise()
     );
     this.table.renderRows();
 
