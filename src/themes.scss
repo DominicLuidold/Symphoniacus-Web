@@ -17,6 +17,10 @@ $themes-map: (
       background: #303030;
     }
 
+    td.mat-footer-cell {
+      color: rgba(255, 255, 255, 0.6) !important;
+    }
+
     .mat-error, .mat-form-field.mat-form-field-invalid .mat-form-field-label {
       color: #ce5454 !important;
     }
