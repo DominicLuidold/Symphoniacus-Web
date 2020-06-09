@@ -1,0 +1,10 @@
+<mat-toolbar color="primary">
+  <span [routerLink]="['/']">Symphoniacus</span>
+
+  <span class="fill-remaining-space"></span>
+
+  <button mat-flat-button *ngIf="user" (click)="logout()">
+    <mat-icon>person</mat-icon>
+    Logout
+  </button>
+</mat-toolbar>
